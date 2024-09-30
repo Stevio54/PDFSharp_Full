@@ -1,0 +1,355 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+[
+  Info.Title    = "Title of my document"
+  Info.Subject  = "Subject of my document"
+  Info.Author   = "empira Software GmbH, Germany"
+  Info.Keywords = "MigraDoc, documents on the fly, DDL"
+]
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Fields
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Paragraph Fields
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A field is an element that is evaluated at render time. Fields are used to
+      provide information not available at DDL generation time.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Date Field \field(Bookmark)[Name = "Date Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows today's date or time using the given format.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+         D: \\field(Date)[Format = "D"] \linebreak
+         \linebreak
+         T: \\field(Date)[Format = "T"] \linebreak
+         \linebreak
+         f: \\field(Date)[Format = "f"] \linebreak
+         \linebreak
+         y: \\field(Date)[Format = "y"] \linebreak
+      \}
+    }
+    \paragraph
+    {
+      D:\tab \field(Date)[Format = "D"]
+
+      T:\tab \field(Date)[Format = "T"]
+
+      f:\tab \field(Date)[Format = "f"]
+
+      y:\tab \field(Date)[Format = "y"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Info Field \field(Bookmark)[Name = "Info Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows the information stored in the \bold{DocumentInfo} attribute of the document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [\linebreak
+        Info.Title    = "Title of my document" \linebreak
+        Info.Subject  = "Subject of my document"  \linebreak
+        Info.Author   = "empira Software GmbH, Germany" \linebreak
+        Info.Keywords = "MigraDoc, documents on the fly, DDL" \linebreak
+      ]\linebreak
+      \{\linebreak
+        \\paragraph [Format.TabStops += \{Position = "2cm"\}] \linebreak
+        \{ \linebreak
+          Title:    \\tab \\field(Info)[Name="Title"] \\linebreak \linebreak
+          Subject:  \\tab \\field(Info)[Name="Subject"] \\linebreak \linebreak
+          Author:   \\tab \\field(Info)[Name="Author"] \\linebreak \linebreak
+          Keywords: \\tab \\field(Info)[Name="Keywords"] \linebreak
+        \} \linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "2cm"}]
+    {
+      Title:    \tab \field(Info)[Name="Title"] \linebreak
+      Subject:  \tab \field(Info)[Name="Subject"] \linebreak
+      Author:   \tab \field(Info)[Name="Author"] \linebreak
+      Keywords: \tab \field(Info)[Name="Keywords"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Page Field \field(Bookmark)[Name = "Page Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows the current page number using the given format. The starting page number is 1
+      and can be overridden in the \bold{PageSetup.StartingNumber} attribute of the section.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      [ \linebreak
+        Default:    \\field(Page) \\linebreak \linebreak
+        ROMAN:      \\field(Page)[Format="ROMAN"] \\linebreak \linebreak
+        roman:      \\field(Page)[Format="roman"] \\linebreak \linebreak
+        ALPHABETIC: \\field(Page)[Format="ALPHABETIC"] \\linebreak \linebreak
+        alphabetic: \\field(Page)[Format="alphabetic"] \linebreak
+      ]
+    }
+    \paragraph
+    {
+      Default:\tab \field(Page) \linebreak
+      ROMAN:\tab \field(Page)[Format="ROMAN"] \linebreak
+      roman:\tab \field(Page)[Format="roman"] \linebreak
+      ALPHABETIC:\tab \field(Page)[Format="ALPHABETIC"] \linebreak
+      alphabetic:\tab \field(Page)[Format="alphabetic"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      NumPages Field \field(Bookmark)[Name = "NumPages Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows the total number of pages of the document using the given format.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      [ \linebreak
+        Default:    \\field(NumPages) \\linebreak \linebreak
+        ROMAN:      \\field(NumPages)[Format="ROMAN"] \\linebreak \linebreak
+        roman:      \\field(NumPages)[Format="roman"] \\linebreak \linebreak
+        ALPHABETIC: \\field(NumPages)[Format="ALPHABETIC"] \\linebreak \linebreak
+        alphabetic: \\field(NumPages)[Format="alphabetic"] \linebreak
+      ]
+    }
+    \paragraph
+    {
+      Default:\tab \field(NumPages) \linebreak
+      ROMAN:\tab \field(NumPages)[Format="ROMAN"] \linebreak
+      roman:\tab \field(NumPages)[Format="roman"] \linebreak
+      ALPHABETIC:\tab \field(NumPages)[Format="ALPHABETIC"] \linebreak
+      alphabetic:\tab \field(NumPages)[Format="alphabetic"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Section Field \field(Bookmark)[Name = "Section Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows the current section number using the given format.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      [ \linebreak
+        Default:    \\field(Section) \\linebreak \linebreak
+        ROMAN:      \\field(Section)[Format="ROMAN"] \\linebreak \linebreak
+        roman:      \\field(Section)[Format="roman"] \\linebreak \linebreak
+        ALPHABETIC: \\field(Section)[Format="ALPHABETIC"] \\linebreak \linebreak
+        alphabetic: \\field(Section)[Format="alphabetic"] \linebreak
+      ]
+    }
+    \paragraph
+    {
+      Default:\tab \field(Section) \linebreak
+      ROMAN:\tab \field(Section)[Format="ROMAN"] \linebreak
+      roman:\tab \field(Section)[Format="roman"] \linebreak
+      ALPHABETIC:\tab \field(Section)[Format="ALPHABETIC"] \linebreak
+      alphabetic:\tab \field(Section)[Format="alphabetic"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      SectionPages Field \field(Bookmark)[Name = "SectionPages Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shows the total number of pages of the current section using the given format.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      [ \linebreak
+        Default:    \\field(SectionPages) \\linebreak \linebreak
+        ROMAN:      \\field(SectionPages)[Format="ROMAN"] \\linebreak \linebreak
+        roman:      \\field(SectionPages)[Format="roman"] \\linebreak \linebreak
+        ALPHABETIC: \\field(SectionPages)[Format="ALPHABETIC"] \\linebreak \linebreak
+        alphabetic: \\field(SectionPages)[Format="alphabetic"] \linebreak
+      ]
+    }
+    \paragraph
+    {
+      Default:\tab \field(SectionPages) \linebreak
+      ROMAN:\tab \field(SectionPages)[Format="ROMAN"] \linebreak
+      roman:\tab \field(SectionPages)[Format="roman"] \linebreak
+      ALPHABETIC:\tab \field(SectionPages)[Format="ALPHABETIC"] \linebreak
+      alphabetic:\tab \field(SectionPages)[Format="alphabetic"]
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Bookmark Field \field(Bookmark)[Name = "Bookmark Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Creates a bookmark which can be referenced by a \italic{PageRef} field or a hyperlink.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        A bookmark with the name 'Test Bookmark' is defined here. \linebreak
+        \\field(Bookmark)[Name = "Test Bookmark"] \linebreak
+      \}
+    }
+    \paragraph
+    {
+      A bookmark with the name 'Test Bookmark' is defined here.
+      \field(Bookmark)[Name = "Test Bookmark"]
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      PageRef Field \field(Bookmark)[Name = "PageRef Field"]
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The \italic{PageRef} field shows the number of the page on which the given bookmark name
+      is defined. If the name cannot be found an error message will be displayed. For illustration
+      purposes, each title in this document has a bookmark which will be used in the following
+      sample to build a 'Table of contents'. The formats available for the other page fields can
+      also be used for the \italic{PageRef} field.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "Heading2"]\linebreak
+      \{ \linebreak
+        Date Field \\field(Bookmark)[Name = "Date Field"]\linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph [Style = "Heading2"]\linebreak
+      \{ \linebreak
+        Info Field \\field(Bookmark)[Name = "Info Field"]\linebreak
+      \} \linebreak
+      … \linebreak
+      … \linebreak
+      \\paragraph [Style = "Heading2"]\linebreak
+      \{ \linebreak
+        Bookmark Field \\field(Bookmark)[Name = "Bookmark Field"]\linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph [Style = "Heading2"]\linebreak
+      \{ \linebreak
+        PageRef Field \\field(Bookmark)[Name = "PageRef Field"]\linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph [Format.TabStops += "5cm"] \linebreak
+      \{ \linebreak
+        \\bold\{Table of Contents\} \\linebreak \linebreak
+        Date Field \\tab \\field(PageRef)[Name = "Date Field"] \\linebreak \linebreak
+        Info Field \\tab \\field(PageRef)[Name = "Info Field"] \\linebreak \linebreak
+        Page Field \\tab \\field(PageRef)[Name = "Page Field"] \\linebreak \linebreak
+        NumPages Field \\tab \\field(PageRef)[Name = "NumPages Field"] \\linebreak \linebreak
+        Section Field \\tab \\field(PageRef)[Name = "Section Field"] \\linebreak \linebreak
+        SectionPages Field \\tab \\field(PageRef)[Name = "SectionPages Field"] \\linebreak \linebreak
+        Bookmark Field \\tab \\field(PageRef)[Name = "Bookmark Field"] \\linebreak \linebreak
+        PageRef Field \\tab \\field(PageRef)[Name = "PageRef Field"] \\linebreak \linebreak
+        Test Bookmark \\tab \\field(PageRef)[Name = "Test Bookmark"] \linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += "5cm"]
+    {
+      \bold{Table of Contents} \linebreak
+      Date Field \tab \field(PageRef)[Name = "Date Field"] \linebreak
+      Info Field \tab \field(PageRef)[Name = "Info Field"] \linebreak
+      Page Field \tab \field(PageRef)[Name = "Page Field"] \linebreak
+      NumPages Field \tab \field(PageRef)[Name = "NumPages Field"] \linebreak
+      Section Field \tab \field(PageRef)[Name = "Section Field"] \linebreak
+      SectionPages Field \tab \field(PageRef)[Name = "SectionPages Field"] \linebreak
+      Bookmark Field \tab \field(PageRef)[Name = "Bookmark Field"] \linebreak
+      PageRef Field \tab \field(PageRef)[Name = "PageRef Field"] \linebreak
+      Test Bookmark \tab \field(PageRef)[Name = "Test Bookmark"]
+    }
+  }
+}

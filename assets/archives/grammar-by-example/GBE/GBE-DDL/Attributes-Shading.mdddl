@@ -1,0 +1,171 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Attributes - Shading
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Shading
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This attribute occurs in various places and controls the background color
+      formatting of the object which defines the \bold{Shading} attribute.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Color
+    }
+    \paragraph [Style = "Comment"]
+    {
+      As its name implies, this attribute defines the shading's color and can use any syntax which
+      is explained in the 'Attributes-Color' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Shading.Color = LightCyan] \linebreak
+      \{…\}
+    }
+    \paragraph [Format.Shading.Color = LightCyan]
+    {
+      This paragraph uses \italic{LightCyan} as background color.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Visible
+    }
+    \paragraph [Style = "Comment"]
+    {
+      By setting this attribute to true or false, you can turn the shading on or off, respectively
+      without changing the color. In the next sample, the column's shading's color is set to
+      \italic{Red} but because the \bold{Visible} attribute is set to false, it's not shown.
+      The cell on the second row however set the \bold{Visible} attribute to true, and as you can see,
+      the cell has a Red shading because the color is unchanged.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{ \linebreak
+          \\column \linebreak
+          [ \linebreak
+            Shading.Color = Red \linebreak
+            Shading.Visible = false \linebreak
+          ] \linebreak
+        \} \linebreak
+        \\rows \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \linebreak
+            \{…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell [Shading.Visible = true] \linebreak
+            \{…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \linebreak
+            \{…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+
+    \table [Borders.Visible = true]
+    {
+      \columns
+      {
+        \column
+        [
+          Shading.Color = Red
+          Shading.Visible = false
+        ]
+      }
+      \rows
+      {
+        \row
+        {
+          \cell
+          {Text}
+        }
+        \row
+        {
+          \cell [Shading.Visible = true]
+          {Text}
+        }
+        \row
+        {
+          \cell
+          {Text}
+        }
+      }
+    }
+  }
+}

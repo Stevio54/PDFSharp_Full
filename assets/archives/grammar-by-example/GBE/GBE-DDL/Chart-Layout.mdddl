@@ -1,0 +1,437 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Layout - Areas
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Areas
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A MigraDoc chart has a total of seven areas, which consist of one plot area
+      and six text areas which can be used to write text in the chart.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Chart
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The chart is defined with the keyword \bold{\\chart}. The layout and text formatting
+      can be controlled from here. The text formatting defined here will be derived to every
+      TextArea of the chart.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Plot Area
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The PlotArea is the area in which the actual chart will be drawn. It is located in the center
+      of the Chart, surrounded by the TextAreas if they exist. Otherwise, it will fill the whole
+      Chart.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Text Area
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The six TextAreas are defined with the keywords \\headerarea, \\footerarea, \\toparea,
+      \\bottomarea, \\leftarea, and \\rightarea.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Pie2D) \linebreak
+      [ \linebreak
+        Height = 200 \linebreak
+        Width = 454 \linebreak
+        FillFormat.Color = BlanchedAlmond \linebreak
+        Format.Alignment = Center \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\rightarea [FillFormat.Color = MintCream] \linebreak
+        \{RightArea\} \linebreak
+        \\leftarea [FillFormat.Color = Lavender] \linebreak
+        \{LeftArea\} \linebreak
+        \\toparea [FillFormat.Color = LigtGray] \linebreak
+        \{TopArea\} \linebreak
+        \\bottomarea [FillFormat.Color = Gray] \linebreak
+        \{BottomArea\} \linebreak
+        \\headerarea [FillFormat.Color = Magenta] \linebreak
+        \{HeaderArea\} \linebreak
+        \\footerarea [FillFormat.Color = DarkBlue] \linebreak
+        \{FooterArea\} \linebreak
+      \}
+    }
+    
+    \chart(Pie2D)
+    [
+      Height = 200
+      Width = 454
+      FillFormat.Color = BlanchedAlmond
+      Format.Alignment = Center
+    ]
+    {
+      \rightarea [FillFormat.Color = MintCream]
+      {RightArea}
+      \leftarea [FillFormat.Color = Lavender]
+      {LeftArea}
+      \toparea [FillFormat.Color = LightGray]
+      {TopArea}
+      \bottomarea [FillFormat.Color = Gray]
+      {BottomArea}
+      \headerarea [FillFormat.Color = Magenta]
+      {HeaderArea}
+      \footerarea [FillFormat.Color = DarkBlue]
+      {FooterArea}
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Layout - Axes
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Axes
+    }
+    \paragraph [Style = "Comment"]
+    {
+      With the \\xaxis and \\yaxis keywords, you can define the formatting of the x-axis and
+      y-axis, respectively. 
+    }
+    
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        \\xaxis \linebreak
+        [ \linebreak
+          LineFormat.Width = 0.25 \linebreak
+          Title.Caption = "X-Axis" \linebreak
+          Title.Alignment = Center \linebreak
+        ] \linebreak
+        \\yaxis \linebreak
+        [ \linebreak
+          LineFormat.Width = 0.25 \linebreak
+          Title.Caption = "Y-Axis" \linebreak
+          Title.VerticalAlignment = Center \linebreak
+        ] \linebreak
+      \}
+    }
+
+    \chart(Line)
+    [
+      Height = 200
+      Width = 454
+      FillFormat.Color = Lavender
+    ]
+    {
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        Title.Caption = "X-Axis"
+        Title.Alignment = Center
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        Title.Caption = "Y-Axis"
+        Title.VerticalAlignment = Center
+      ]
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Layout - Data
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Data
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Data Series
+    }
+    \paragraph [Style = "Comment"]
+    {
+      To draw a chart, you will need at least one series of data which is defined using
+      the keyword \\series. If any of the data in the data series doesn't exist, 'null'
+      can be inserted, in result, the data will not be displayed.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\series \{5838, 1681, 9136, 2586, 6125, null, null, 5123, 6486, 1235\} \linebreak
+        \\series \{9874, 1894, 1895, 2188, 1776, 2189, 9813, 7321, 5874, 8564\} \linebreak
+      \}
+    }
+    
+    \chart(Line)
+    [
+      Height = 185
+      Width = 454
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea[FillFormat.Color = Ivory]
+      \xaxis [LineFormat.Width = 0.25]
+      \yaxis [LineFormat.Width = 0.25]
+      \series {5838, 1681, 9136, 2586, 6125, null, null, 5123, 6486, 1235}
+      \series {9874, 1894, 1895, 2188, 1776, 2189, 9813, 7321, 5874, 8564}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      X-Values
+    }
+    \paragraph [Style = "Comment"]
+    {
+      While the y-axis can only be filled with values, you can write text on the x-axis.
+      This can be done using the keyword \\xvalues. MigraDoc allows more than one x-value
+      to be written on the x-axis. An empty string or 'null' can be used if an empty
+      x-value is needed.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\xvalues \{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"\} \linebreak
+        \\xvalues \{"1999", "", "2000", "", "2001", null, "2002", null, "2003"\} \linebreak
+      \}
+    }
+    
+    \chart(Line)
+    [
+      Height = 185
+      Width = 454
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea[FillFormat.Color = Ivory]
+      \xaxis [LineFormat.Width = 0.25]
+      \yaxis [LineFormat.Width = 0.25]
+      \series {5838, 1681, 9136, 2586, 6125, null, null, 5123, 6486, 1235}
+      \series {9874, 1894, 1895, 2188, 1776, 2189, 9813, 7321, 5874, 8564}
+      \xvalues {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}
+      \xvalues {"1999", "", "2000", "", "2001", null, "2002", null, "2003"}
+    }
+    \pagebreak
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Point
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can customize each data in a Bar, Column or Pie chart individually using the
+      keyword \\point.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Bar2D) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\series \linebreak
+        \{ \linebreak
+          \\point \linebreak
+          [ \linebreak
+            LineFormat.Color = Blue \linebreak
+            LineFormat.Width = 1 \linebreak
+          ] \linebreak
+          \{9874\}, \linebreak
+          \\point \linebreak
+          [ \linebreak
+            FillFormat.Color = Red \linebreak
+          ] \linebreak
+          \{1894\}, \linebreak
+          \\point \linebreak
+          [ \linebreak
+            LineFormat.Width = 3 \linebreak
+            LineFormat.DashStyle = DashDotDot \linebreak
+          ] \linebreak
+          \{2118\}, \linebreak
+          6598 \linebreak
+        \} \linebreak
+        … \linebreak
+      \}
+    }
+
+    \chart(Column2D)
+    [
+      Height = 300
+      Width = 454
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea[FillFormat.Color = Ivory]
+      \xaxis [LineFormat.Width = 0.25]
+      \yaxis [LineFormat.Width = 0.25]
+      \series
+      {
+        \point
+        [
+          LineFormat.Color = Blue
+          LineFormat.Width = 1
+        ]
+        {9874},
+        \point
+        [
+          FillFormat.Color = Red
+        ]
+        {1894},
+        \point
+        [
+          LineFormat.Width = 3
+          LineFormat.DashStyle = DashDotDot
+        ]
+        {2118},
+        6598
+      }
+      \xvalues {"A", "B", "C", "D"}
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Layout - Legend
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Legend
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A legend can be placed in any of the text areas with the \\legend keyword.
+      The entry used in the legend is the name of each of the data series.
+      If no name is given for a data series, then an entry with no text will be made.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\rightarea \{\\legend\} \linebreak
+        \\series [Name = "Part 1"] \linebreak
+        \{…\} \linebreak
+        \\series \linebreak
+        \{…\} \linebreak
+      \}
+    }
+
+    \chart(Line)
+    [
+      Height = 185
+      Width = 454
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea[FillFormat.Color = Ivory]
+      \rightarea {\legend}
+      \xaxis [LineFormat.Width = 0.25]
+      \yaxis [LineFormat.Width = 0.25]
+      \series [Name = "Part 1"]
+      {5838, 1681, 9136, 2586, 6125, 5123, null, null, null, null}
+      \series
+      {9874, 1894, 1895, 2188, 1776, 2189, 9813, 7321, 5874, 8564}
+      \xvalues {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}
+    }
+  }
+}

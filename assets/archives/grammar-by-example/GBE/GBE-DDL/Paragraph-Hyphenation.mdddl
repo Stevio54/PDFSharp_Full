@@ -1,0 +1,121 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Hyphenation
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Hyphenation
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc 1.1 currently does not support automatic language specific 
+      hyphenation. It wraps text only between words.
+      But it is possible to tag long words with one or more conditional hyphens.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Conditional Hyphen
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The keyword \\- is the conditional hyphen.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+        [Format \{LeftIndent = "4.5cm" RightIndent = "4.5cm" Alignment = Justify …\}] \linebreak
+      \{ \linebreak
+        Loreet ad et luptat. Duis niam\\-con\\-secte digna fac\\-illa \linebreak
+        reros delit utat augait er\\-atie modi\\-ons quisci\\-duisi \linebreak
+        euis\\-sed mag\\-na feu\\-giam quat alit amet alit, quam\\-con \linebreak
+        henibh eum veros nul\\-lan eugiat. Ut ipsum\\-modesto exer \linebreak
+        in hent lortio odo\\-lore dolo\\-rer iustis am vul\\-lam, \linebreak
+        qua\\-ting euguer\\-aestie etum\\-san ute modi\\-ons. \linebreak
+      \}
+    }
+    \paragraph [Format {LeftIndent = "5cm" RightIndent = "4cm" Alignment = Justify Shading.Color = Lightgreen}]
+    {
+      Loreet ad et luptat. Duis niam\-con\-secte digna fac\-illa 
+      reros delit utat augait er\-atie modi\-ons quisci\-duisi 
+      euis\-sed mag\-na feu\-giam quat alit amet alit, quam\-con 
+      henibh eum veros nul\-lan eugiat. Ut ipsum\-modesto exer 
+      in hent lortio odo\-lore dolo\-rer iustis am vul\-lam, 
+      qua\-ting euguer\-aestie etum\-san ute modi\-ons. 
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The same paragraph without conditional hyphens looks like this:
+    }
+    \paragraph [Format {LeftIndent = "5cm" RightIndent = "4cm" Alignment = Justify Shading.Color = Lightgreen}]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla
+      reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon
+      henibh eum veros nullan eugiat. Ut ipsummodesto exer 
+      in hent lortio odolore dolorer iustis am vullam, 
+      quating eugueraestie etumsan ute modions.
+    }
+  }
+}

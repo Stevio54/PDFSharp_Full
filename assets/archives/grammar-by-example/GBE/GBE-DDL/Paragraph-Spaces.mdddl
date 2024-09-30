@@ -1,0 +1,209 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Spaces
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Spaces
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Multiple spaces and spaces at the beginning of a line are normally ignored by MigraDoc,
+      but you can use the keyword \\space to insert a non-breakable space which won't be ignored.
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      Keyword \\space
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The keyword \\space written without parenthesis inserts a single non-breakable space.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Font.Name = "Courier New" Borders.Left.Visible = true] \linebreak
+      \{ \linebreak
+        Some usual Text.\\linebreak \linebreak
+       \\space And a space at the beginning of this line.\linebreak
+      \}
+    }
+    \paragraph [Format.Font.Name = "Courier New"]
+    {
+      Some usual Text.\linebreak
+      \space And a space at the beginning of this line.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Multiple Spaces
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The keyword \\space can also be used with one parameter determining the number of spaces to be inserted.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Font.Name = "Courier New"] \linebreak
+      \{ \linebreak
+        ---------- \\linebreak \linebreak
+        --\\space(1)------- \\linebreak \linebreak
+        ----\\space(3)--- \\linebreak \linebreak
+        \\space(2)-------- \linebreak
+      \}
+    }
+    \paragraph [Format.Font.Name = "Courier New"]
+    {
+      ---------- \linebreak
+      --\space(1)------- \linebreak
+      ----\space(3)--- \linebreak
+      \space(2)--------
+    }
+    \pagebreak
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Space Types
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc also provides three custom spaces. An 'Em' space will show a whitespace
+      with the width of a lower-case 'm', an 'En' space will show a whitespace with the
+      width of a lower-case 'n', and an 'Em4' space will show a whitespace with the width
+      of a quarter of a lower case 'm'.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Em space \\linebreak \linebreak
+        --m-- \\linebreak \linebreak
+        --\\space(Em)-- \\linebreak \linebreak
+        \\linebreak \linebreak
+        En space \\linebreak \linebreak
+        --n-- \\linebreak \linebreak
+        --\\space(En)-- \\linebreak \linebreak
+        \\linebreak \linebreak
+        Four Em4 spaces \\linebreak \linebreak
+        --m-- \\linebreak \linebreak
+        --\\space(Em4)\\space(Em4)\\space(Em4)\\space(Em4)-- \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Em space \linebreak
+      --m-- \linebreak
+      --\space(Em)-- \linebreak
+      \linebreak
+      En space \linebreak
+      --n-- \linebreak
+      --\space(En)-- \linebreak
+      \linebreak
+      Four Em4 spaces \linebreak
+      --m-- \linebreak
+      --\space(Em4)\space(Em4)\space(Em4)\space(Em4)--
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Multiple Custom Spaces
+    }
+    \paragraph [Style = "Comment"]
+    {
+      With a second parameter, you can also specify the number of custom spaces that should be inserted.
+      The syntax is '\\space(Type, x)', where x is the number of spaces to be inserted.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Four Em space \\linebreak \linebreak
+        --mmmm-- \\linebreak \linebreak
+        --\\space(Em,4)-- \\linebreak \linebreak
+        \\linebreak \linebreak
+        Three En space \\linebreak \linebreak
+        --nnn-- \\linebreak \linebreak
+        --\\space(En,3)-- \\linebreak \linebreak
+        \\linebreak \linebreak
+        Twenty Em4 spaces \\linebreak \linebreak
+        --mmmmm-- \\linebreak \linebreak
+        --\\space(Em4,20)-- \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Four Em space \linebreak
+      --mmmm-- \linebreak
+      --\space(Em,4)-- \linebreak
+      \linebreak
+      Three En space \linebreak
+      --nnn-- \linebreak
+      --\space(En,3)-- \linebreak
+      \linebreak
+      Twenty Em4 spaces \linebreak
+      --mmmmm-- \linebreak
+      --\space(Em4,20)--
+    }
+  }
+}

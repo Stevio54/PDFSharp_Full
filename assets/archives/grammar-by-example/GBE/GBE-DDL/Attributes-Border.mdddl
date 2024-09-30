@@ -1,0 +1,296 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Attributes - Border
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Borders
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The Borders attribute controls how the borders around paragraphs and tables should
+      be drawn. Besides defining the Borders attribute, you can control each borders
+      individually, which are, Top, Bottom, Left, Right, DiagonalUp and DiagonalDown.
+      The last two borders are only available for tables.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Visible
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The Visible attribute can be set either to true or false which will turn the
+      borders on or off, respectively.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Borders.Visible = true] \linebreak
+      \{…\}
+    }
+    \paragraph [Format.Borders.Visible = true]
+    {
+      This is a paragraph with borders around it.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Color
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This attribute controls the color of the borders and can use any syntax which is
+      explained in the 'Attributes-Color' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Borders.Color = Violet] \linebreak
+      \{…\}
+    }
+    \paragraph [Format.Borders.Color = Violet]
+    {
+      This is a paragraph with a violet colored border around it.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Width
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This attributes controls the line width of the borders and can use the unit of measures
+      defined in the 'Attributes-Units' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Borders.Width = "1mm"] \linebreak
+      \{…\}
+    }
+    \paragraph [Format.Borders.Width = "1mm"]
+    {
+      This is a paragraph with a 1mm thick border.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc supports the following border styles: None, Single, Dot, DashSmallGap,
+      DashLargeGap, DashDot and DashDotDot.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.Borders.Style = DashDot] \linebreak
+      \{…\}
+    }
+    \paragraph [Format.Borders.Style = DashDot]
+    {
+      This is a paragraph with a DashDotted border.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Distances
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are four distances that can be defined in a MigraDoc border, which are: 
+      DistanceFromTop, DistanceFromBottom, DistanceFromRight, and DistanceFromLeft.
+      They define the distances between the text and the top, bottom, right and left
+      borders, respectively. The distances can be defined using any unit of measures
+      described in the 'Attributes-Units' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph\linebreak
+      [ \linebreak
+        Format.Borders.Visible = true \linebreak
+        Format.Borders.DistanceFromTop = "0.5cm" \linebreak
+        Format.Borders.DistanceFromBottom = "3mm" \linebreak
+        Format.Borders.DistanceFromRight = "6pt" \linebreak
+        Format.Borders.DistanceFromLeft = "0.7in" \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \paragraph
+    [
+      Format.Borders.Visible = true
+      Format.Borders.DistanceFromTop = "0.5cm"
+      Format.Borders.DistanceFromBottom = "3mm"
+      Format.Borders.DistanceFromRight = "6pt"
+      Format.Borders.DistanceFromLeft = "0.7in"
+    ]
+    {
+      This is a paragraph surrounded by a border with various distances.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Individual Borders
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Each of the explained attributes with the exception of the distances can also be used
+      to individually format each of the border parts.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      [ \linebreak
+        Format.Borders \linebreak
+        \{ \linebreak
+          Top.Color = Blue \linebreak
+          Bottom.Style = Dot \linebreak
+          Left.Width = "3pt" \linebreak
+          Right.Color = Red \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \paragraph
+    [
+      Format.Borders
+      {
+        Top.Color = Blue
+        Bottom.Style = Dot
+        Left.Width = "3pt"
+        Right.Color = Red
+      }
+    ]
+    {
+      Paragraph with various border.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Comment"]
+    {
+      To show the \bold{DiagonalUp} and \bold{DiagonalDown} borders in a table, their
+      \bold{Visible} attributes have to be explicitly set to true. You can see in the
+      following sample, although the borders' \bold{Visible} attribute is set to true
+      in the table, the first cell doesn't have the \bold{DiagonalUp} and \bold{DiagonalDown}
+      borders.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{…\} \linebreak
+        \\rows \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \linebreak
+            \{…\} \linebreak
+            \\cell \linebreak
+            [ \linebreak
+              Borders \linebreak
+              \{ \linebreak
+                DiagonalUp.Visible = true \linebreak
+                DiagonalUp.Color = Magenta \linebreak
+                DiagonalDown.Visible = true \linebreak
+                DiagonalDown.Style = DashDotDot \linebreak
+              \} \linebreak
+            ] \linebreak
+            \{…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows
+      {
+        \row [Height = 50]
+        {
+          \cell
+          {Text}
+          \cell
+          [
+            Borders
+            {
+              DiagonalUp.Visible = true
+              DiagonalUp.Color = Magenta
+              DiagonalDown.Visible = true
+              DiagonalDown.Style = DashDotDot
+            }
+          ]
+          {Text}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Inheritance
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Table Inheritance
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The format of a cell can be determined at several places within a table.
+      This sample explains how this works.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Inheritance Order
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This sample demonstrates how each cell inherits attributes from its table,
+      its column and its row.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true Format.Font.Size = 8] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column [Format.Font.Bold = true] \linebreak
+          \\column [Format.Alignment = Center Format.Font.Color = Red] \linebreak
+        \} \linebreak
+        \\rows [Height = 25] \linebreak
+        \{ \linebreak
+          \\row [VerticalAlignment = Center] \linebreak
+          \{ \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+          \} \linebreak
+          \\row [Format.Font.Italic = true] \linebreak
+          \{ \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+          \} \linebreak
+          \\row [VerticalAlignment = Bottom Format.Font.Color = Green] \linebreak
+          \{ \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+            \\cell \{Test\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column [Format.Font.Bold = true]
+        \column [Format.Alignment = Center Format.Font.Color = Red]
+      }
+      \rows [Height = 25]
+      {
+        \row [VerticalAlignment = Center]
+        {
+          \cell {Test}
+          \cell {Test}
+          \cell {Test}
+        }
+        \row [Format.Font.Italic = true]
+        {
+          \cell {Test}
+          \cell {Test}
+          \cell {Test}
+        }
+        \row [VerticalAlignment = Bottom Format.Font.Color = Green]
+        {
+          \cell {Test}
+          \cell {Test}
+          \cell {Test}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The font size is set at the table and inherited to each paragraph in the cells.
+      
+      The font of the second column is set to bold and the font of the second row is set
+      to italic. Therefore, the center cell is both bold and italic.
+      
+      If an attribute comes from both row and column, the row wins. That is why the bottom
+      right cell is green and not red.
+      
+      Attributes that belong to a cell, can be set at \\table, \\column, \\row, or \\cell.
+      Attributes that belong to a column, can be set at \\columns or \\column.
+      Attributes that belong to a row, can be set at \\rows or \\row.
+    }
+    \paragraph 
+    [
+      Style = "Comment" 
+      Format 
+      { LeftIndent = "3mm" 
+        TabStops += {Position = "3mm"} 
+        ListInfo.ListType = BulletList1
+        SpaceBefore = 9
+        SpaceAfter = 6
+      }
+    ]
+    {
+      Attributes that belong to a cell, can be set at \\cell, \\row, \\column, or \\table.
+      
+      Attributes that belong to a column, can be set at \\column or \\columns.
+      
+      Attributes that belong to a row, can be set at \\row or \\rows.
+    }
+  }
+}

@@ -1,0 +1,387 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+[
+  //The footnotes' numbers are arabic numbers (1, 2, 3, …).
+  //This is the default behavior.
+  FootnoteNumberStyle = Arabic
+
+  //Use this to achieve lower case letters for the footnote numbers (a, b, c, …).
+  //FootnoteNumberStyle = LowercaseLetter
+
+  //Use this to achieve upper case letters for the footnote numbers (A, B, C, …).
+  //FootnoteNumberStyle = UppercaseLetter
+
+  //Use this to achieve lower case roman numbers for the footnotes (i, ii, iii, …).
+  //FootnoteNumberStyle = LowercaseRoman
+
+  //Use this to achieve upper case roman numbers for the footnotes (I, II, III, …).
+  //FootnoteNumberStyle = UppercaseRoman
+  
+  //The footnote location is Beneath Text.
+  //This is the default behavior.
+  FootnoteLocation = BeneathText
+  
+  //Use this to place footnotes at bottom of page.
+  //This is the default behavior.
+  //FootnoteLocation = BottomOfPage
+] 
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+    
+    Footnote
+    {
+      Font.Size = 8
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Footnotes - Numbering Rule
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Numbering Rule
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The numbering of footnotes can be restarted either on each page, 
+      each section or never. This behavior is determined by the document's attribute FootnoteNumberingRule.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Restart each Page
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnote numbering can be restarted on each page.\linebreak
+      This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteNumberingRule = RestartPage\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    // -------------------------------------------------------------------------
+  
+    \paragraph [Style = "Heading2"]
+    {
+      Restart each Section
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnote numbering can be restarted at each section.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteNumberingRule = RestartSection\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Continuous Numbering
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnote numbering can be continuous over the whole document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteNumberingRule = RestartContinuous\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+  }
+  // -------------------------------------------------------------------------
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Footnotes - Number Style
+    }
+
+    \paragraph [Style = "Heading1"]
+    {
+      Number Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The number style of the footnote's reference symbols can be altered.
+      This Behavior is determined by the document's attribute FootnoteNumberStyle.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Arabic Numbers
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnotes' numbers can be arabic numbers (1, 2, 3, …), as done in this document.\linebreak
+      This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteNumberStyle = Arabic\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Letters
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnotes' numbers can be lower case letters (a, b, c, …) or uppercase letters (A, B, C, …).
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        \//Lower case letters for the footnote numbers (a, b, c, …).\linebreak
+        FootnoteNumberStyle = LowercaseLetter\linebreak
+        \linebreak
+        \linebreak
+        \//Use this to achieve upper case letters for the footnote numbers (A, B, C, …).\linebreak
+        \//FootnoteNumberStyle = UppercaseLetter\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Roman Numbers
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The footnotes' numbers can be roman numbers written with lower case letters (i, ii, iii, …) or upper case letters (I, II, III, …).
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        \//Lower case roman numbers for the footnotes (i, ii, iii, …).\linebreak
+        FootnoteNumberStyle = LowercaseRoman\linebreak
+        \linebreak
+        \//Use this to achieve upper case roman numbers for the footnotes (I, II, III, …).\linebreak
+        \//FootnoteNumberStyle = UppercaseRoman\linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+  }
+  // -------------------------------------------------------------------------
+  \section
+  {
+    \paragraph [Style = "Heading1"]
+    {
+      Reference Symbol
+    }
+    \paragraph
+    [
+      Style = "Comment"
+    ]
+    {
+      The footnote's reference symbols can be altered for each footnote or the document's global footnote attributes can be used.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Using the Document's Footnote Numbering
+    }
+    \paragraph
+    [
+      Style = "Comment"
+    ]
+    {
+      By default, the reference symbol is defined by the document's attributes described above.
+    }
+    \paragraph
+    [
+      Style = "DDL"
+    ]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        This is a footnote using the document's footnote  numbering.\linebreak
+        \\footnote\{Text within the footnote.\}. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      This is a footnote using the document's footnote attributes
+      \footnote{Text within the footnote.}. 
+    }
+    
+    \paragraph [Style = "Heading2"]
+    {
+      Custom Symbol
+    }
+    \paragraph
+    [
+      Style = "Comment"
+    ]
+    {
+      Each Footnote can use its own Reference symbol.
+      Note that this procedure will not influence footnote counting over the document.
+      
+      Unlike the sample, you should either always define an individual reference symbol, or never.
+    }
+    \paragraph
+    [
+      Style = "DDL"
+    ]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        This is a footnote with an individual symbol\linebreak
+        \\footnote[Reference = "*"]\{Text within the footnote.\}. \linebreak
+      \} \linebreak
+      \\paragraph \linebreak
+      \{ \linebreak
+        This is a footnote using the document's footnote numbering.\linebreak
+        \\footnote\{Text within the footnote.\}. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      This is a footnote with an individual symbol \footnote[Reference = "*"]{Text within the footnote.}. \linebreak
+    }
+    \paragraph
+    {
+      This is a footnote using the document's footnote numbering
+      \footnote{Text within the footnote.}. 
+    }
+  }
+  // -------------------------------------------------------------------------
+  \section [PageSetup.StartingNumber = 1]
+  {
+     \header
+    {
+      Paragraph - Footnotes - Position
+    }
+  
+    \paragraph [Style = "Heading1"]
+    {
+      Location
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Footnotes can be placed either at the bottom of the page or directly beneath the page content.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Bottom of Page
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can place the footnotes at the bottom of the page.\linebreak
+      This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteLocation = BottomOfPage \linebreak
+      ] \linebreak
+      \{ \linebreak
+        …\linebreak
+      \}
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Beneath Text
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can place the footnotes directly beneath the page content, as done in this document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        FootnoteLocation = BeneathText \linebreak
+      ] \linebreak
+      \{ \linebreak
+        …\linebreak
+      \}
+    }
+  }
+}

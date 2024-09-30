@@ -1,0 +1,308 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Font - Direct Formatting
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Direct Formatting
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The font of a paragraph inherits its attributes from the style associated
+      with the paragraph. Within a paragraph, single words can be formatted
+      directly.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Default
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The MigraDoc default font comes from style 'Normal'. It is predefined as Verdana 10pt. 
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text without any further formatting. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text without any further formatting.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Bold
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with a \\bold\{bold\} word. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with a \bold{bold} word.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Italic
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with an \\italic\{italic\} word. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with an \italic{italic} word.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Underline
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with an \\underline\{underlined\} word. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with an \underline{underlined} word.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Bold and Italic
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with three \\bold\{\\italic\{bold and italic\}\} words. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with three \bold{\italic{bold and italic}} words.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Font Color
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with \\fontcolor(DarkGreen)\{dark green\}\} words. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with \fontcolor(DarkGreen){dark green} words.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Font Size
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with a \\fontsize(16)\{large\} word. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with \fontsize(16){large} word.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2" Format.KeepWithNext = true]
+    {
+      Font Name
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The key words \\bold, \\italic, \\fontcolor, etc. are just short cuts of
+      the general form \\font[…]\{…\}. With this notation each attribute of a font
+      can be changed.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with a \\font[Name = "Courier New"]\{word\} in other font. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with a \font[Name = "Courier New"]{word} in other font.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Superscript and Subscript
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Text with \\font[SuperScript = true]\{super script\} and \linebreak
+        \\font[SubScript = true]\{sub script\} words. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Text with \font[SuperScript = true]{super script} and 
+      \font[SubScript = true]{sub script} words.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Underline Color
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Except in HTML output, the underline color is given by the current font's color.\linebreak
+      In HTML, the underline color is determined by the font given directly before the underline keyword was used.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        Underline uses the \\underline\{\\fontcolor(Red)\{color\} of \\fontcolor(Green)\{the\} \linebreak
+        current \\fontcolor(Blue)\{font\}\}. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      Underline uses the \underline{\fontcolor(Red){color} of \fontcolor(Green){the}
+      current \fontcolor(Blue){font}}.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Underline Types
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Text can be underlined in several manners. Note that the HTML standards specified today do not include different types of underlining.
+      
+      \bold{Remark:} Style 'Words' is not yet implemented in MigraDoc 1.1.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        \\font[Underline = Single]\{Single - All words are underlined.\} \linebreak
+        \linebreak
+        \\font[Underline = Words]\{Words - Only words are underlined (nyi).\} \linebreak
+        \linebreak
+        \\font[Underline = Dash]\{Dash - All words are underlined.\} \linebreak
+        \linebreak
+        \\font[Underline = DotDash]\{DotDash - All words are underlined.\} \linebreak
+        \linebreak
+        \\font[Underline = DotDotDash]\{DotDotDash - All words are underlined.\} \linebreak
+        \linebreak
+        \\font[Underline = Dotted]\{Dotted - All words are underlined.\} \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \font[Underline = Single]{Single - All words are underlined.}
+      
+      \font[Underline = Words]{Words - Only words are underlined (nyi).}//NOT YET IMPLEMENTED
+      
+      \font[Underline = Dash]{Dash - All words are underlined.}
+      
+      \font[Underline = DotDash]{DotDash - All words are underlined.}
+      
+      \font[Underline = DotDotDash]{DotDotDash - All words are underlined.}
+      
+      \font[Underline = Dotted]{Dotted - All words are underlined.}
+    }
+  }
+}

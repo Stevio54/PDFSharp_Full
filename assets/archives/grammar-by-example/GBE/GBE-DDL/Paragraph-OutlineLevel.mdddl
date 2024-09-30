@@ -1,0 +1,199 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Outline Level
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Outline Level
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Attribute \bold{OutlineLevel} is used to create bookmarks in a PDF file, which you can see
+      in the PDF viewer if you render this document to PDF. The \bold{OutlineLevel} defines
+      the nesting of the PDF Bookmark.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      10 Outline Levels
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc provides 10 outline levels which are from \italic{Level1} to \italic{Level9} and \italic{BodyText}.
+      All outline levels except \italic{BodyText} will be used to create the chapter structure
+      in a PDF document, starting from \italic{Level1} as the top level. The title of the outline
+      levels will be taken from the appropriate paragraphs, but the length of the text
+      is limited to 60 characters. Tabulators are converted into spaces.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Headings and Normal Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      By default the outline levels \italic{Level1} to \italic{Level9} are defined in the styles Heading1
+      to Heading9 and \italic{BodyText} is defined in the Normal style, this attribute will be
+      inherited to the derived styles. You can change the outline level of a style by
+      changing the \bold{OutlineLevel} attribute. This applies to both built-in styles and new styles.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        Heading8 \linebreak
+        \{ \linebreak
+          ParagraphFormat.OutlineLevel = Level3 \linebreak
+        \} \linebreak
+        \linebreak
+        MyStyle : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.OutlineLevel = Level1 \linebreak
+        \} \linebreak
+      \}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Addition of outline levels
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If a specific outline level is missing in the document, then an appropriate one
+      will be generated with an empty title. For example, if \italic{Level1} and \italic{Level3} exist,
+      then \italic{Level2} will be created between them, but it will be empty.
+    }
+    
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "Heading1"] \linebreak
+      \{Heading1\} \linebreak
+      \\paragraph [Style = "Heading2"] \linebreak
+      \{Heading2\} \linebreak
+      \\paragraph [Style = "Heading3"] \linebreak
+      \{Heading3\} \linebreak
+      \\paragraph [Style = "Heading2"] \linebreak
+      \{Heading2\} \linebreak
+      \\paragraph [Style = "Heading3"] \linebreak
+      \{Heading3\} \linebreak
+      \\paragraph [Style = "Heading3"] \linebreak
+      \{Heading3\} \linebreak
+      \\paragraph [Style = "Heading1"] \linebreak
+      \{Heading1\} \linebreak
+      \\paragraph [Style = "Heading2"] \linebreak
+      \{Heading2\} \linebreak
+      \\paragraph [Style = "Heading4"] \linebreak
+      \{Heading4\} \linebreak
+      \\paragraph [Style = "Heading1"] \linebreak
+      \{Heading1\} \linebreak
+      \\paragraph [Style = "Heading2"] \linebreak
+      \{Heading2\} \linebreak
+      \\paragraph [Style = "Heading5"] \linebreak
+      \{Heading5\} \linebreak
+      \\paragraph [Style = "Heading2"] \linebreak
+      \{Heading2\}
+    }
+    \pagebreak
+    
+    \paragraph [Style = "Heading1"]
+    {Heading1}
+    \paragraph [Style = "Heading2"]
+    {Heading2}
+    \paragraph [Style = "Heading3"]
+    {Heading3}
+    \paragraph [Style = "Heading2"]
+    {Heading2}
+    \paragraph [Style = "Heading3"]
+    {Heading3}
+    \paragraph [Style = "Heading3"]
+    {Heading3}
+
+    \paragraph [Style = "Heading1"]
+    {Heading1}
+    \paragraph [Style = "Heading2"]
+    {Heading2}
+    \paragraph [Style = "Heading4"]
+    {Heading4}
+      
+    \paragraph [Style = "Heading1"]
+    {Heading1}
+    \paragraph [Style = "Heading2"]
+    {Heading2}
+    \paragraph [Style = "Heading5"]
+    {Heading5}
+    \paragraph [Style = "Heading2"]
+    {Heading2}
+
+    \paragraph
+    
+    \paragraph [Style = "Comment"]
+    {
+      You can see the PDF bookmarks in the PDF viewer.
+    }
+  }
+}

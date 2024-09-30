@@ -1,0 +1,428 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Textframe - Layout
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Textframe Layout
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This sample demonstrates the meaning of textframes for more sophisticated page layouts.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      LineFormat and FillFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See the 'Shape-Layout' sample to see how to surround a 
+      textframe by a line or how to give it a background color.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Position
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See the 'Shape-Layout' sample to see how a textframe receives its desired position.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Size
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See the 'Shape-Layout' sample to see how a textframe receives its desired size.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Orientation
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Elements in the textframe can be turned. The orientation is applied to all elements within the textframe.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      
+      \\textframe[Orientation = Horizontal …]\linebreak
+      \{\linebreak
+         A textframe with default orientated contents.\linebreak
+      \} \linebreak
+      \\textframe[Orientation = Upward …]\linebreak
+      \{\linebreak
+         A textframe with orientation upwards.\linebreak
+      \} \linebreak
+      \\textframe[Orientation = Downward …]\linebreak
+      \{\linebreak
+         A textframe with orientation downwards.\linebreak
+      \}
+    }
+    \textframe
+    [
+     Orientation = Horizontal
+     FillFormat.Color = LightBlue
+     WrapFormat.Style = Through
+    ]
+    {
+      A textframe with default orientated contents.
+    }
+    \textframe
+    [
+     Orientation = Upward 
+     FillFormat.Color = LightBlue
+     WrapFormat.Style = Through
+     Left = Center
+    ]
+    {
+      A textframe with orientation upwards.
+    }
+    \textframe
+    [
+     Orientation = Downward
+     FillFormat.Color = LightBlue
+     WrapFormat.Style = TopBottom
+     Left = Right
+    ]
+    {
+      A textframe with orientation downwards.
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Note that in HTML specifications there is no possibility to turn contents.
+      So in HTML the contents will always appear like in the default case.
+    }
+    \pagebreak
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Margin
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify the distances between the textframe's edges and its contents.
+      In the following examples, the distances are indicated by the green shading of
+      the paragraph and the blue shaded textframe.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe \linebreak
+      [\linebreak
+        MarginLeft = "0.2cm"\linebreak
+        MarginRight = "1.5cm"\linebreak
+        …\linebreak
+      ] \linebreak
+      \{\linebreak
+        \\paragraph[Format.Shading.Color = LightGreen]\linebreak
+        \{\linebreak
+          A textframe with different left and right margins.\linebreak
+        \} \linebreak
+      \} \linebreak
+            \\textframe \linebreak
+      [\linebreak
+        MarginTop = "0.2cm"\linebreak
+        MarginBottom = "1.5cm"\linebreak
+        Orientation = Downward\linebreak
+        …\linebreak
+      ] \linebreak
+      \{\linebreak
+        \\paragraph[Format.Shading.Color = LightGreen]\linebreak
+        \{\linebreak
+          A textframe with different top and bottom margins.\linebreak
+        \} \linebreak
+      \}
+    }
+    \textframe 
+    [
+      MarginLeft = "0.2cm"
+      MarginRight = "1.5cm"
+      Height = "2cm"
+      Width = "5cm"
+      FillFormat.Color = LightBlue
+      WrapFormat.Style = Through
+    ]
+    {
+      \paragraph[Format.Shading.Color = LightGreen]
+      {
+        A textframe with different left and right margins.
+      }
+    }
+    \textframe 
+    [
+      MarginTop = "0.2cm"
+      MarginBottom = "1.5cm"
+      Orientation = Downward
+      Height = "5cm"
+      Width = "2cm"
+      Left = Center
+      FillFormat.Color = LightBlue
+      WrapFormat.Style = TopBottom
+    ]
+    {
+      \paragraph[Format.Shading.Color = LightGreen]
+      {
+        A textframe with different top and bottom margins.
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Note that the margins are independent from the orientation, i.e. they
+      are relative to the text frame and not the content.
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Textframe - Layout - Contents of a Textframe
+    }
+    \paragraph [Style = "Heading1"]
+    {
+      Contents of a Textframe
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In textframes, several elements that can appear on section level can be embedded.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Plain Text and Paragraphs
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can put plain text or paragraphs into a textframe. 
+      Note that if you put plain text into a textframe, 
+      this works like a paragraph without any attribute assignment would have been inserted.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\textframe[Height = "3cm" Width = "3cm" …]\linebreak
+      \{\linebreak
+         A textframe with plain text…\linebreak
+         \linebreak
+         And a second 'paragraph', seperated by an empty line.\linebreak
+      \} \linebreak
+      \\textframe[Height = "3cm" Width = "3cm" …]\linebreak
+      \{\linebreak
+         \\paragraph[Format.Font.Color = DarkBlue]\linebreak
+         \{\linebreak
+           A paragraph with changed text color, embedded in a textframe.\linebreak
+         \}\linebreak
+      \}
+    }
+    \textframe[Height = "3cm" Width = "3cm" FillFormat.Color = LightBlue WrapFormat.Style = Through]
+    {
+      A textframe with plain text…
+      
+      And a second 'paragraph', seperated by an empty line.
+    }
+
+    \textframe[Height = "3cm" Width = "3cm" FillFormat.Color = LightBlue Left = Center ]
+    {
+      \paragraph[Format.Font.Color = DarkBlue]
+      {
+        A paragraph with changed text color, embedded in a textframe.
+      } 
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Shapes in Textframes
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can put images and charts into textframes. Embedding further textframes is \bold{not} allowed.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\textframe[…]\linebreak
+      \{\linebreak
+         \\paragraph\{Image and Chart within a textframe.\}\linebreak
+         \\image("logo_e.gif")\linebreak
+         \\chart[…]\linebreak
+         \{\linebreak
+           …\linebreak
+         \}\linebreak
+      \}
+    }
+    \textframe[Height = "8cm" Width = "16cm" FillFormat.Color = LightBlue]
+    {
+      \paragraph{Image and Chart within a textframe.}
+      \image("logo_e.gif")
+      \chart(Area2D)
+      [
+        Height = "5cm"
+        Width = "10cm"
+        LineFormat.Visible = true
+      ]
+      {
+        \plotarea
+        [
+          TopPadding = 10
+          LeftPadding = 10
+          RightPadding = 10
+          BottomPadding = 10
+          FillFormat.Color = Silver
+        ]
+        \rightarea [VerticalAlignment = Center]
+        {
+          \legend
+          [
+            Format.Font.Name = "Arial"
+            Format.Font.Size = "10"
+            LineFormat.Width = 0.25
+          ]
+        }
+        \xaxis
+        [
+          LineFormat.Width = 0.25
+          TickLabels.Font.Name = "Arial"
+          TickLabels.Font.Size = 10
+        ]
+        \yaxis
+        [
+          LineFormat.Width = 0.25
+          MajorGridlines.LineFormat.Width = 0.25
+          TickLabels.Font.Name = "Arial"
+          TickLabels.Font.Size = 10
+          TickLabels.Format = "#"
+        ]
+        \series
+        [
+          Name = "1st Period"
+          LineFormat.Visible = true
+          FillFormat.Color = 0xFF9999FF
+        ]
+        {6846, 9464, 7569, 6169}
+        \series
+        [
+          Name = "2nd Period"
+          LineFormat.Visible = true
+          FillFormat.Color = 0xFF993366
+        ]
+        {5838, 3681, 6548, 5564}
+        \xvalues
+        {
+          "2000", "2001", "2002", "2003"
+        }
+      }
+    }
+    \paragraph[Style = "Comment"]
+    {
+      Note that placing a shape relative to the page edge or margin will not work in textframes.
+      See the 'Shape-Layout' sample for details about placing a shape.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Tables in Textframes
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can put tables into textframes. This can be used to turn a table.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\textframe[Orientation = Downward …]\linebreak
+      \{\linebreak
+         \\table[Borders.Visible = true]\linebreak
+         \{\linebreak
+           …\linebreak
+         \}\linebreak
+      \}
+    }
+    \textframe[Orientation = Downward Height = "6cm"  Width = "2cm" FillFormat.Color = LightBlue]
+    {
+      \table[Borders.Visible = true]
+      {
+        \columns
+        {
+          \column
+          \column
+        }
+        \rows[Alignment = Center]
+        {
+          \row
+          {
+            \cell{A}
+            \cell{downward}
+          }
+          \row
+          {
+            \cell{orientated}
+            \cell{table.}
+          }
+        }
+      }
+    }
+  }
+}

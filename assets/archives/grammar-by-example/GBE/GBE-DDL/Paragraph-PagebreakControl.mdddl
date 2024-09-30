@@ -1,0 +1,408 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+    
+    SampleParagraph : Normal
+    {
+      ParagraphFormat
+      {
+        Shading.Color = RGB(213, 255, 255)
+        Borders
+        {
+          Visible = true
+          DistanceFromLeft = 5
+          DistanceFromRight = 5
+          DistanceFromTop = 5
+          DistanceFromBottom = 5
+          Width = 2
+        }
+        Alignment = Justify
+        SpaceBefore = 5
+        SpaceAfter = 5
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Pagebreak Control
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The behavior of a paragraph in case of a page break can be defined with the
+      help of several attributes.
+      This document has to be converted into PDF in order to be able to use the
+      link below each explanation.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "DefaultExp"]
+      Default Paragraph
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This section shows how a paragraph normally behaves in case of a page break.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "Comment" Format.SpaceAfter = 63] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph \linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="Default Paragraph"]{To sample}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "WidowExp"]
+      WidowControl
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The WidowControl attribute controls how a paragraph should be broken in case it
+      should be written on more than one page. It defines whether or not a single line
+      of a paragraph should be written on a page. By default, WidowControl is set to true.
+      If you compare the last Paragraph of section 1 and section 2, you'll see that in the
+      second section, only the last line is written on the last page. The widow control,
+      if it's set to true, will write at least two lines of a paragraph on a single page.
+      If this is not possible, the whole paragraph will be written on another page.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "Comment" Format.SpaceAfter = 27] \linebreak
+      \{…\}\linebreak
+      \\paragraph \linebreak
+      \\paragraph [Style = "SampleParagraph" Format.WidowControl = false] \linebreak
+      \{…\}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="WidowControl"]{To sample}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "TogetherExp"]
+      KeepTogether
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The KeepTogether attribute controls whether a paragraph may be broken in case
+      is doesn't fit on one page. By default is KeepTogether set to false. The third
+      paragraph in this sample has its KeepTogether attribute set to true, that's
+      why it is not broken, but entirely on the second page.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "Comment" Format.SpaceAfter = 40] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph" Format.KeepTogether = true] \linebreak
+      \{…\}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="KeepTogether"]{To sample}
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "NextExp"]
+      KeepWithNext
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The KeepWithNext attribute controls whether the current paragraph should be put
+      on the same page with the next paragraph. The default value of the KeepWithNext
+      attribute is false.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "Comment" Format.SpaceAfter = 15] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph" Format.KeepWithNext = true] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph" Format.SpaceBefore = 27] \linebreak
+      \{…\}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="KeepWithNext"]{To sample}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "BeforeExp"]
+      PageBreakBefore
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The PageBreakBefore attribute controls whether the paragraph should be written
+      on a new page. When this attribute is set to true, a page break will be inserted
+      in front of the paragraph. The default value of the PageBreakBefore attribute is false.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "Comment"] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph" Format.PageBreakBefore = true] \linebreak
+      \{…\}\linebreak
+      \\paragraph [Style = "SampleParagraph"] \linebreak
+      \{…\}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="PageBreakBefore"]{To sample}
+    }
+  }
+
+  \section
+  [
+    PageSetup
+    {
+      StartingNumber = 1
+      PageWidth = "14.8cm"
+      PageHeight = "12.8cm" 
+    }
+  ]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control - Default Paragraph \linebreak
+//      \hyperlink[Name="DefaultExp"]{To explanation}
+    }
+    \paragraph [Style = "Comment" Format.SpaceAfter = 63]
+    {
+      \field(Bookmark)[Name = "Default Paragraph"]
+      This section shows how a paragraph is broken between pages by default.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control - WidowControl \linebreak
+//      \hyperlink[Name="WidowExp"]{To explanation}
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      \field(Bookmark)[Name = "WidowControl"]
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "Comment" Format.SpaceAfter = 27]
+    {
+      The next paragraph will have its last line written alone on another page. This behavior occurs
+      because the WidowControl attribute is set to false; by default it is set to true. (Compare this
+      with the last paragraph of the previous section.)
+    }
+    \paragraph
+    \paragraph [Style = "SampleParagraph" Format.WidowControl = false]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control - KeepTogether \linebreak
+//      \hyperlink[Name="TogetherExp"]{To explanation}
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      \field(Bookmark)[Name = "KeepTogether"]
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "Comment" Format.SpaceAfter = 40]
+    {
+      The next paragraph will be written entirely on another page, although it would be possible
+      to write a few lines of it on this page. This behavior occurs because the KeepTogether attribute
+      of the paragraph is set to true.
+    }
+    \paragraph [Style = "SampleParagraph" Format.KeepTogether = true]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control - KeepWithNext
+//      \hyperlink[Name="NextExp"]{To explanation}
+    }
+    \paragraph [Style = "Comment"  Format.SpaceBefore = 27 Format.SpaceAfter = 15]
+    {
+      \field(Bookmark)[Name = "KeepWithNext"]
+      The next paragraph is written on another page, although it would be possible to write it on
+      this page. This behavior occurs because the KeepWithNext attribute of the paragraph is set
+      to true. This causes the paragraph to be written on the same page as its next paragraph.
+    }
+    \paragraph [Style = "SampleParagraph" Format.KeepWithNext = true]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Pagebreak Control - PageBreakBefore
+//      \hyperlink[Name="BeforeExp"]{To explanation}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      \field(Bookmark)[Name = "PageBreakBefore"]
+      The next paragraph is written on a new page because its PageBreakBefore attribute is set to true.
+      This attribute defines that a page break is inserted before the paragraph.
+    }
+    \paragraph [Style = "SampleParagraph" Format.PageBreakBefore = true]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "SampleParagraph"]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+  }
+}

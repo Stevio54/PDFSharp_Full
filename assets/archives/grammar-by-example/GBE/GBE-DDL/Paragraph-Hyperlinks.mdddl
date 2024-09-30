@@ -1,0 +1,160 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Hyperlinks
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Paragraph Hyperlinks
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In MigraDoc, a hyperlink can be used after the document is rendered into PDF, RTF or HTML.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Local (Bookmark)
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Hyperlinks with the \italic{Local} or \italic{Bookmark} types refer to a position in the
+      same document which is defined with the keyword \bold{\\field(Bookmark)}.
+      This hyperlink type is the default type which will also be used if no type is defined.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        \\hyperlink[Type = Local Name = "Bookmark 1"] \linebreak
+        \{Link to a bookmark\} \linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph \linebreak
+      \{ \linebreak
+        A bookmark.\\field(Bookmark)[Name = "Bookmark 1"] \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Type = Local Name = "Bookmark 1"] {Link to a bookmark}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      File
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This hyperlink type can be used to link a local file to the document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        \\hyperlink[Type = File Name = "../Paragraph-Layout.mdddl"] \linebreak
+        \{Paragraph-Layout.mdddl\} \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Type = File Name = "../Paragraph-Layout.mdddl"]
+      {Paragraph-Layout.mdddl}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Web (Url)
+    }
+    \paragraph [Style = "Comment"]
+    {
+      With a hyperlink of type \italic{Web} or \italic{Url} you can link a website to your document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        \\hyperlink[Type = Web Name = @"http:\//www.empira.de"] \linebreak
+        \{empira software GmbH\} \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Type = Web Name = @"http://www.empira.de"]
+      {empira software GmbH}
+    }
+    \pagebreak
+    
+    \paragraph
+    {
+      A bookmark.\field(Bookmark)[Name = "Bookmark 1"]
+    }
+    
+    \paragraph [Style = "Comment"]
+    {
+      The bookmark above is used as a target from the hyperlink on the previous page.
+    }
+  }
+}

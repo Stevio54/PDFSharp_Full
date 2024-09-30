@@ -1,0 +1,815 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles 
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Shape - Layout - Size
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+    \paragraph [Style = "Heading1"]
+    {
+      Shape Layout
+    }
+    \paragraph [Style = "Comment"]
+    {  
+      Textframes, images and charts share a couple of attributes explained in this document.
+      The generic term 'shape' is used for all of them.
+      
+      Note that all samples in this document work with all these three types of elements.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Size
+    }
+    \paragraph [Style = "Comment"]
+    {  
+      The size of a shape can be specified in a simple manner.
+      In detail, the sizes of some shapes may be given in a different way depending on its kind.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Height and Width 
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The size of a shape can be specified by the attributes \bold{Height} and \bold{Width}.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        Width = "5cm"\linebreak
+        Height = "3cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe of size 5 cm x 3 cm.\linebreak
+      \}
+    }
+    \textframe
+    [
+      Width = "5cm"
+      Height = "3cm"
+      FillFormat.Color = LightBlue
+    ]
+    {
+      A textframe of size 5 cm x 3 cm.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Remarks on Shape Sizes
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The default size of a textframe is 2.5 cm x 2.5 cm. Its size will not increase automatically with its contents.
+      
+      The default size of an image is given by its resolution and size in pixels.
+      Note that the actual size of an image is influenced by several different attributes of the image.
+      See 'Images-Layout' for details.
+      
+      A chart has a zero default size. Because a sensible size strongly depends on the data the chart represents,
+      it's the document designer's duty to define it.
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Shape - Layout - LineFormat and FillFormat
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      LineFormat and FillFormat
+    }
+    \paragraph [Style = "Comment"]
+    {  
+      Shapes can be surrounded by a line and their background can be filled with a color.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      LineFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A shape can be surrounded by a line. See 'Attributes-LineAndFillFormat' for details.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        LineFormat.Width = 1\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe\linebreak
+      \}
+    }
+    \textframe
+    [
+      LineFormat.Width = 1
+    ]
+    {
+      A textframe
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      FillFormat 
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A shape can have a background color. Again, you can consult the 'Attributes-LineAndFillFormat' sample for details
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        FillFormat.Color = PeachPuff\linebreak
+      ]\linebreak
+      \{\linebreak
+        A textframe with background color "peach puff".\linebreak
+      \}
+    }
+    \textframe
+    [
+      FillFormat.Color = PeachPuff
+    ]
+    {
+      A textframe with background color "peach puff".
+    }
+  }
+
+  \section
+  [
+    PageSetup.PageFormat = A4
+    PageSetup.StartingNumber = 1
+  ]
+  {
+    \header
+    {
+      Shape - Layout - Left Position
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Left Position
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The left position denotes a distance or a position on the page that
+      depends on the attribute \bold{RelativeHorizontal}. It can be meant …
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Distance to the Left Page Margin
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeHorizontal} is set to \italic{Margin}, a numerical value for \bold{Left} denotes the distance to the left page margin.
+      This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeHorizontal = Margin Left = "0.5cm" …]\linebreak
+      \{\linebreak
+         A textframe placed 0.5 cm from the left page margin.\linebreak
+      \}
+    }
+    \textframe[RelativeHorizontal = Margin Left = "0.5cm" FillFormat.Color = LightBlue]
+    {
+      A textframe placed 0.5 cm from the left page margin.
+    }
+  
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Distance to the Left Page Edge
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeHorizontal} is set to \italic{Page}, a numerical value for \bold{Left} denotes the distance to the left page edge.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeHorizontal = Page Left = "0.5cm" …]\linebreak
+      \{\linebreak
+         A textframe 0.5 cm from the left page edge.\linebreak
+      \}
+    }
+    \textframe[RelativeHorizontal = Page Left = "0.5cm" FillFormat.Color = LightBlue]
+    {
+      A textframe 0.5 cm from the left page edge.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Position relative to the Page
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeHorizontal} is set to \italic{Page}, \bold{Left} can be set to either \italic{Left}, \italic{Center} or \italic{Right}, which is meant as position relative to the page.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeHorizontal = Page Left = Left …]\linebreak
+      \{\linebreak
+         A textframe at the left page edge.\linebreak
+      \}\linebreak
+      \\textframe[RelativeHorizontal = Page Left = Center …]\linebreak
+      \{\linebreak
+         A textframe horizontally centered on the page.\linebreak
+      \}\linebreak
+      \\textframe[RelativeHorizontal = Page Left = Right …]\linebreak
+      \{\linebreak
+         A textframe at the right page edge.\linebreak
+      \}
+    }
+    \textframe[RelativeHorizontal = Page Left = Left FillFormat.Color = LightBlue WrapFormat.Style = Through]
+    {
+      A textframe at the left page edge.
+    }
+    \textframe[RelativeHorizontal = Page Left = Center FillFormat.Color = LightBlue WrapFormat.Style = Through]
+    {
+      A textframe horizontally centered on the page.
+    }
+    \textframe[RelativeHorizontal = Page Left = Right FillFormat.Color = LightBlue ]
+    {
+      A textframe at the right page edge.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Position relative to the Page Margin
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeHorizontal} is set to \italic{Margin}, \bold{Left} can be set to either \italic{Left}, \italic{Center} or \italic{Right}, which is meant as position relative to the page margin.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeHorizontal = Margin Left = Left …]\linebreak
+      \{\linebreak
+         A textframe at the left page margin.\linebreak
+      \}\linebreak
+      \\textframe[RelativeHorizontal = Margin Left = Center …]\linebreak
+      \{\linebreak
+         A textframe centered between left and right page margin.\linebreak
+      \}\linebreak
+      \\textframe[RelativeHorizontal = Margin Left = Right …]\linebreak
+      \{\linebreak
+         A textframe at the right page margin.\linebreak
+      \}
+    }
+    \textframe[RelativeHorizontal = Margin Left = Left FillFormat.Color = LightBlue WrapFormat.Style = Through]
+    {
+      A textframe at the left page margin.
+    }
+    \textframe[RelativeHorizontal = Margin Left = Center FillFormat.Color = LightBlue WrapFormat.Style = Through]
+    {
+      A textframe centered between left and right page margin.
+    }
+    \textframe[RelativeHorizontal = Margin Left = Right FillFormat.Color = LightBlue]
+    {
+      A textframe at the right page margin.
+    }
+  }
+
+  \section
+  [
+    PageSetup.PageFormat = A4
+    PageSetup.StartingNumber = 1
+  ]
+  {
+    \header
+    {
+      Shape - Layout - Top Position
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Top Position
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The top position denotes a distance or a position on the page that
+      depends on the attribute \bold{RelativeVertical}. It can be meant …
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Distance to a preceeding Element
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeVertical} is set to \italic{Paragraph}, a numerical value for \bold{Top}
+      denotes the distance to the preceeding element. This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph[Format.SpaceAfter = "0cm" …]\linebreak
+      \{\linebreak
+         A paragraph with a 'SpaceAfter' attribute of value 0 cm.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Paragraph Top = "0.5cm" …]\linebreak
+      \{\linebreak
+         A textframe with a 'Top' attribute of value 0.5 cm.\linebreak
+      \}\linebreak
+      \\paragraph[Format.SpaceAfter = "0.5cm" …]\linebreak
+      \{\linebreak
+         A paragraph with a 'SpaceAfter' attribute of value 0.5 cm.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Paragraph Top = "0cm" …]\linebreak
+      \{\linebreak
+         A textframe with a 'Top' attribute of value 0 cm.\linebreak
+      \}
+    }
+    \paragraph[Format.SpaceAfter = "0cm" Format.Shading.Color = lightgreen]
+    {
+      A paragraph with a 'SpaceAfter' attribute of value 0 cm.
+    }
+    \textframe[RelativeVertical = Paragraph Top = "0.5cm"  FillFormat.Color = LightBlue]
+    {
+      A textframe with a 'Top' attribute of value 0.5 cm.
+    }
+    \paragraph[Format.SpaceAfter = "0.5cm"  Format.Shading.Color = lightgreen]
+    {
+      A paragraph with a 'SpaceAfter' attribute of value  0.5 cm.
+    }
+    \textframe[RelativeVertical = Paragraph Top = "0cm" FillFormat.Color = LightBlue]
+    {
+      A textframe with a 'Top' attribute of value 0 cm.
+    }
+  
+    \paragraph[Style = "Comment"]
+    {
+      Note that in this case this attribute works like the \bold{SpaceBefore} attribute of a paragraph. 
+      So the maximum of a preceeding paragraph's space after and the shape's \bold{Top} attribute will be taken to place the shape.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Distance to the Top Page Edge
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeVertical} is set to \italic{Page}, a numerical value for \bold{Top} denotes the distance to the top page edge.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeVertical = Page Top = "0.5cm" …]\linebreak
+      \{\linebreak
+         A textframe 0.5 cm from the top page edge.\linebreak
+      \}
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Distance to the Top Page Margin
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeVertical} is set to \italic{Margin}, a numerical value for \bold{Top} denotes the distance to the top page margin.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeVertical = Margin Top = "0.5cm" …]\linebreak
+      \{\linebreak
+         A textframe 0.5 cm from the top page margin.\linebreak
+      \}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Position relative to the Page
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeVertical} is set to \italic{Page}, \bold{Top} can be set to either \italic{Top} , \italic{Center} or \italic{Bottom}, which is meant as position relative to the page.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeVertical = Page Top = Top …]\linebreak
+      \{\linebreak
+         A textframe at the top page edge.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Page Top = Center …]\linebreak
+      \{\linebreak
+         A textframe vertically centered on the page.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Page Top = Bottom …]\linebreak
+      \{\linebreak
+         A textframe at the bottom page edge.\linebreak
+      \}
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      … as Position relative to the Page Margin
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{RelativeVertical} is set to \italic{Margin}, \bold{Top} can be set to either \italic{Top} , \italic{Center} or \italic{Bottom}, which is meant as position relative to the page margin.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[RelativeVertical = Margin Top = Top …]\linebreak
+      \{\linebreak
+         A textframe at the top page margin.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Margin Top = Center …]\linebreak
+      \{\linebreak
+         A textframe centered between top and bottom page margin.\linebreak
+      \}\linebreak
+      \\textframe[RelativeVertical = Margin Top = Bottom …]\linebreak
+      \{\linebreak
+         A textframe at the bottom page margin.\linebreak
+      \}
+    }
+  }
+
+  \section
+  [
+    PageSetup.PageFormat = A4
+    PageSetup.StartingNumber = 1
+  ]
+  {
+    \header
+    {
+      Shape - Layout - Wrapformat Distances
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Wrapformat Distances
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify distances to surrounding elements or a relative position.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Left Distance
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify the attribute \bold{WrapFormat.DistanceLeft}.
+      In MigraDoc 1.1, it works like the attribute \bold{Left} with a numerical value.
+      
+      You should actually see this attribute as reserved for future extensions.
+
+      It is also thought to serve as left distance to a neighbor
+      if e.g. a shape lies between two columns in a multi column section.
+      Such layout techniques are not yet implemented in MigraDoc 1.1.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Top Distance
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify the attribute \bold{WrapFormat.DistanceTop}.
+      In MigraDoc 1.1, it works like the attribute \bold{Top} with a numerical value.
+      
+      You should actually see this attribute as reserved for future extensions.
+
+      It is also thought to serve as top distance e.g to a paragraph flowing around the shape.
+      Such layout techniques are not yet implemented in MigraDoc 1.1.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Right Distance
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify an attribute \bold{WrapFormat.DistanceRight}.
+      It is taken into account if a shape is right aligned relatively to the page edge or margin.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        RelativeHorizontal = Page\linebreak
+        Left = Right\linebreak
+        WrapFormat.DistanceRight = "0.5cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe 0.5 cm from the right page edge.\linebreak
+      \}\linebreak
+      \\textframe\linebreak
+      [\linebreak
+        RelativeHorizontal = Margin\linebreak
+        Left = Right\linebreak
+        WrapFormat.DistanceRight = "1.5cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe 1.5 cm from the right page margin.\linebreak
+      \}
+    }
+    \textframe
+    [
+      RelativeHorizontal = Page
+      Left = Right
+      WrapFormat.DistanceRight = "0.5cm"
+      FillFormat.Color = LightBlue
+      WrapFormat.Style = Through
+    ]
+    {
+      A textframe 0.5 cm from the right page edge.
+    }
+    \textframe
+    [
+      RelativeHorizontal = Margin
+      Left = Right
+      WrapFormat.DistanceRight = "1.5cm"
+      FillFormat.Color = LightBlue
+    ]
+    {
+      A textframe 1.5 cm from the right page margin.
+    }
+    \paragraph[Style = "Comment"]
+    {
+      This attribute is also thought to serve as right distance e.g to a paragraph flowing around the shape.
+      Such layout techniques are not yet implemented in MigraDoc 1.1.
+    }
+    \pagebreak
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Bottom Distance
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify an attribute \bold{WrapFormat.DistanceBottom}.
+      It is taken into account if a shape is bottom aligned relatively to the page edge or margin.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        RelativeVertical = Page\linebreak
+        Top = Bottom\linebreak
+        WrapFormat.DistanceBottom = "0.5cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe 0.5 cm from the bottom page edge.\linebreak
+      \}\linebreak
+      \\textframe\linebreak
+      [\linebreak
+        RelativeVertical = Margin\linebreak
+        WrapFormat.DistanceBottom = "1.5cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe 1.5 cm from the bottom page margin.\linebreak
+      \}
+    }
+    \paragraph[Style = "Comment"]
+    {
+      This attribute can also serve to guarantee a bottom distance to a following element.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe\linebreak
+      [\linebreak
+        RelativeVertical = Paragraph\linebreak
+        WrapFormat.DistanceBottom = "0.5cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe with a distance bottom attribute of 0.5 cm.\linebreak
+      \}\linebreak
+      \\paragraph[Format.SpaceAfter = "0.3 cm" …]\linebreak
+      \{\linebreak
+         A paragraph with a space before attribute of 0.3 cm.\linebreak
+      \}\linebreak
+      \\textframe\linebreak
+      [\linebreak
+        RelativeVertical = Paragraph\linebreak
+        WrapFormat.DistanceBottom = "0.3cm"\linebreak
+        …\linebreak
+      ]\linebreak
+      \{\linebreak
+         A textframe with a distance bottom attribute of 0.3 cm.\linebreak
+      \}\linebreak
+      \\paragraph[Format.SpaceAfter = "0.5 cm" …]\linebreak
+      \{\linebreak
+         A paragraph with a space before attribute of 0.5 cm.\linebreak
+      \}
+    }
+    \textframe
+    [
+      RelativeVertical = Paragraph
+      WrapFormat.DistanceBottom = "0.5cm"
+      FillFormat.Color = LightBlue
+      Height = "2.7cm"
+    ]
+    {
+      A textframe with a distance bottom attribute of 0.5 cm.
+    }
+    \paragraph[Format.SpaceBefore = "0.3cm" Format.Shading.Color = LightGreen]
+    {
+      A paragraph with a space before attribute of value 0.3 cm.
+    }
+    \textframe
+    [
+      RelativeVertical = Paragraph
+      WrapFormat.DistanceBottom = "0.3cm"
+      FillFormat.Color = LightBlue
+      Height = "2.7cm"
+    ]
+    {
+      A textframe with a distance bottom attribute of 0.3 cm.
+    }
+    \paragraph[Format.SpaceBefore = "0.5cm" Format.Shading.Color = LightGreen]
+    {
+      A paragraph with a space before attribute  0.5 cm.
+    }
+    \paragraph[Style = "Comment"]
+    {
+      Note that in this case this attribute works like the \bold{SpaceAfter} attribute of a paragraph. 
+      So the maximum of a succeeding paragraph's space before and the shape's \bold{DistanceBottom} attribute will be taken to place the shape.
+    }
+    \paragraph[Style = "Comment"]
+    {
+      This attribute is also thought to serve as bottom distance e.g to a paragraph flowing around the shape.
+      Such layout techniques are not yet implemented in MigraDoc 1.1.
+    }
+  }
+
+  \section
+  [
+    PageSetup.PageFormat = A4
+    PageSetup.StartingNumber = 1
+  ]
+  {
+    \header
+    {
+      Shape - Layout - Wrapformat Style
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Wrapformat Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A shape can either be considered or ignored by its surrounding elements.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Top Bottom
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify that the size of a shape will be considered by its successor.
+      This is the default behavior.
+      
+      Note that this will not work if \bold{RelativeVertical} is set to \italic{Page} or \italic{Margin}.
+      In this case, the shape size will always be ignored by its successor.
+      This is a logical behavior, because the neighbors in DDL declaration then are not necessarily the neighbors on the rendered page.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph[…]\linebreak
+      \{\linebreak
+         A paragraph before a textframe.\linebreak
+      \}\linebreak
+      \\textframe[WrapFormat.Style = TopBottom …]\linebreak
+      \{\linebreak
+         A textframe between 2 paragraphs.\linebreak
+      \}\linebreak  
+      \\paragraph[…]\linebreak
+      \{\linebreak
+         A paragraph after a textframe.\linebreak
+      \}
+    }
+    \paragraph[Format.Shading.Color = LightGreen]
+    {
+      A paragraph before a textframe.
+    }
+    \textframe[WrapFormat.Style = TopBottom FillFormat.Color = LightBlue]
+    {
+      A textframe between 2 paragraphs.
+    }
+    \paragraph[Format.Shading.Color = LightGreen]
+    {
+      A paragraph after a textframe.
+    }
+     // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Through
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can specify that the size of a shape will be ignored by its successor.
+      This is especially useful if you would like to place two shapes next to each other.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe[WrapFormat.Style = Through Height = "3cm" …]\linebreak
+      \{\linebreak
+         A textframe the size of which is ignored.\linebreak
+      \}\linebreak
+      \\textframe[WrapFormat.Style = TopBottom Left = "3cm" Height = "4cm" …]\linebreak
+      \{\linebreak
+         A textframe the size of which will be considered.\linebreak
+      \}\linebreak
+      \\paragraph[…]\linebreak
+      \{\linebreak
+         A paragraph afterwards.\linebreak
+      \}
+    }
+    \textframe[WrapFormat.Style = Through Height = "3cm" FillFormat.Color = LightBlue]
+    {
+      A textframe the size of which is ignored.
+    }
+    \textframe[WrapFormat.Style = TopBottom Left = "3cm" Height = "4cm" FillFormat.Color = LightBlue]
+    {
+      A textframe the size of which will be considered.
+    }
+    \paragraph[Format.Shading.Color = LightGreen]
+    {
+      A paragraph afterwards.
+    }
+  }
+}

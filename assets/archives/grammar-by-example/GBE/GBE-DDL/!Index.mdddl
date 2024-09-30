@@ -1,0 +1,355 @@
+//
+// Copyright (c) empira Software GmbH, All rights reserved.
+//
+// This sample is provided "AS IS" without warranty of any kind.
+// Its purpose is to demonstrate the capabilities of MigraDoc.
+//
+
+//
+// Index of empira MigraDoc DDL samples
+//
+
+\document
+{
+  \styles
+  {
+    Normal
+    {
+      Font.Size = 8
+      Font.Color = RGB(30,70,160)
+    }
+   
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    HyperLink : Normal
+    {
+      Font
+      {
+        Bold = true
+        Color = 0xFFFFB00A
+      }
+    }
+    
+    TableTitle : Normal
+    {
+      Font.Bold = true
+      ParagraphFormat.OutlineLevel = Level2
+    }
+    
+    TableText : Normal
+    {
+      Font.Size = 7
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 3
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      MigraDoc DDL Samples Index
+    }
+    \footer [Format.Alignment = Center]
+    {
+      \field(Page)/\field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      MigraDoc DDL Samples
+    }
+    \paragraph
+    {
+      The DDL samples demonstrate the use of MigraDoc DDL by examples.
+      This file gives an overview and links to the individual samples. 
+    }
+    \paragraph
+    \paragraph
+    {
+      \bold{Remark:} To use the hyperlinks, render this document into PDF and open it with
+      your PDF viewer.
+    }
+    \paragraph
+    
+    \table
+    [
+      LeftPadding = 5.4
+      RightPadding = 5.4
+      TopPadding = 2
+      BottomPadding = 2
+      Borders
+      {
+        Width = 1
+        Color = RGB(84,116,190)
+        Visible = false
+      }
+    ]
+    {
+      \columns
+      {
+        \column [Width = "7.5cm"]
+        \column [Width = "1cm"]
+        \column [Width = "7.5cm"]
+      }
+      \rows [LeftIndent = 0]
+      {
+        // Title
+        \row [Style = "TableTitle"]
+        {
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Document}
+          \cell
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Sections}
+        }
+        // Content
+        \row
+        {
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Document-Style.pdf"]
+            {Document-Style} \linebreak
+            How to work with character and paragraph style templates.
+            
+            \hyperlink[Type = File Name = "Document-Styles.pdf"]
+            {Document-Styles} \linebreak
+            How to use the predefined character and paragraph styles.
+
+            \hyperlink[Type = File Name = "Document-Info.pdf"]
+            {Document-Info} \linebreak
+            How to define document infos like title, author etc.
+          }
+          \cell
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Section-PageLayout.pdf"]
+            {Section-PageLayout} \linebreak
+            How to define page size, orientation and margins.
+
+            \hyperlink[Type = File Name = "Section-HeaderAndFooter.pdf"]
+            {Section-HeaderAndFooter} \linebreak
+            How to define headers and footers.
+
+            \hyperlink[Type = File Name = "Section-PageNumbering.pdf"]
+            {Section-PageNumbering} \linebreak
+            How to define page size, orientation and margins.
+
+            \hyperlink[Type = File Name = "Section-HorizontalPagebreak.pdf"]
+            {Section-HorizontalPagebreak} \linebreak
+            How to spread wide tables horizontally over more than one page.
+
+            \hyperlink[Type = File Name = "Section-MirrorMargins.pdf"]
+            {Section-MirrorMargins} \linebreak
+            How to toggle left and right margin on odd and even pages.
+          }
+        }
+
+        \row [Borders.Visible = false] {} //BUG remove {} (fix in parser)
+        
+        // Title
+        \row [Style = "TableTitle"]
+        {
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Paragraphs}
+          \cell
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Tables}
+        }
+        // Content
+        \row
+        {
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Paragraph-SpecialCharacters.pdf"]
+            {Paragraph-SpecialCharacters} \linebreak
+            How insert special characters.
+
+            \hyperlink[Type = File Name = "Paragraph-Font.pdf"]
+            {Paragraph-Font} \linebreak
+            How to format fonts in paragraphs.
+
+            \hyperlink[Type = File Name = "Paragraph-Layout.pdf"]
+            {Paragraph-Layout} \linebreak
+            How to format a paragraph.
+
+            \hyperlink[Type = File Name = "Paragraph-Tabs.pdf"]
+            {Paragraph-Tabs} \linebreak
+            How to use tab stops.
+
+            \hyperlink[Type = File Name = "Paragraph-Spaces.pdf"]
+            {Paragraph-Spaces} \linebreak
+            How to use non breakable spaces.
+
+            \hyperlink[Type = File Name = "Paragraph-PageBreakControl.pdf"]
+            {Paragraph-PageBreakControl} \linebreak
+            How to control automatic page break.
+
+            \hyperlink[Type = File Name = "Paragraph-OutlineLevel.pdf"]
+            {Paragraph-OutlineLevel} \linebreak
+            How to create PDF bookmarks using the outline level.
+
+            \hyperlink[Type = File Name = "Paragraph-Fields.pdf"]
+            {Paragraph-Fields} \linebreak
+            How to use fields for referencing page numbers etc.
+
+            \hyperlink[Type = File Name = "Paragraph-Hyperlinks.pdf"]
+            {Paragraph-Hyperlinks} \linebreak
+            How to use hyperlinks in conjunction with bookmarks.
+
+            \hyperlink[Type = File Name = "Paragraph-Footnotes.pdf"]
+            {Paragraph-Footnotes} \linebreak
+            How to deal with footnotes.
+
+            \hyperlink[Type = File Name = "Paragraph-Hyphenation.pdf"]
+            {Paragraph-Hyphenation} \linebreak
+            How to use soft hyphens.
+          }
+          \cell
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Table-Layout.pdf"]
+            {Table-Layout} \linebreak
+            How to layout tables.
+
+            \hyperlink[Type = File Name = "Table-CellLayout.pdf"]
+            {Table-CellLayout} \linebreak
+            How to use cell alignment and padding.
+
+            \hyperlink[Type = File Name = "Table-Inheritance.pdf"]
+            {Table-Inheritance} \linebreak
+            How inheritance of column and row attributes work.
+          }
+        }
+        
+        \row [Borders.Visible = false] {} //BUG remove {} (fix in parser)
+        
+        // Title
+        \row [Style = "TableTitle"]
+        {
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Shapes}
+          \cell
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Images}
+        }
+        // Content
+        \row
+        {
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Shape-Layout.pdf"]
+            {Shape-Layout} \linebreak
+            How to use the common layout option for all types of shapes.
+          }
+          \cell
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Image-Layout.pdf"]
+            {Image-Layout} \linebreak
+            How to place images.
+          }
+        }
+        
+        \row [Borders.Visible = false] {} //BUG remove {} (fix in parser)
+        
+        // Title
+        \row [Style = "TableTitle"]
+        {
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Text Frames}
+          \cell
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Charts}
+        }
+        // Content
+        \row
+        {
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "TextFrame-Layout.pdf"]
+            {TextFrame-Layout} \linebreak
+            How to use text frames.
+          }
+          \cell
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Chart-Layout.pdf"]
+            {Chart-Layout} \linebreak
+            How to use the different areas of a chart shape.
+            
+            \hyperlink[Type = File Name = "Chart-Types.pdf"]
+            {Chart-Types} \linebreak
+            How to specify the different chart types.
+          }
+        }
+        
+        //BUG KeepWith
+        \row [Borders.Visible = false ]{} // KeepWith = 2] {} //BUG remove {} (fix in parser)
+        
+        // Title
+        \row [Style = "TableTitle" KeepWith = 1]
+        {
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Attributes}
+          \cell
+          \cell [Borders.Visible = true Shading.Color = RGB(198,212,241)]
+          {Various}
+        }
+        // Content
+        \row
+        {
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Attributes-Color.pdf"]
+            {Attributes-Color} \linebreak
+            How to define a color.
+            
+            \hyperlink[Type = File Name = "Attributes-Border.pdf"]
+            {Attributes-Border} \linebreak
+            How to define different border styles.
+            
+            \hyperlink[Type = File Name = "Attributes-Shading.pdf"]
+            {Attributes-Shading} \linebreak
+            How to define different shading styles.
+            
+            \hyperlink[Type = File Name = "Attributes-LineAndFillFormat.pdf"]
+            {Attributes-LineAndFillFormat} \linebreak
+            How to define line and fill format of shapes.
+            
+            \hyperlink[Type = File Name = "Attributes-Units.pdf"]
+            {Attributes-Units} \linebreak
+            How to define different units of measure.
+          }
+          \cell
+          \cell [Style = "TableText" Borders.Visible = true]
+          {
+            \hyperlink[Type = File Name = "Barcode.pdf"]
+            {Barcode} \linebreak
+            How to define barcodes.
+          }
+        }
+      }
+    }
+  }
+}

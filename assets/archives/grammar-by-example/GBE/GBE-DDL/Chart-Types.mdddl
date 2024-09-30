@@ -1,0 +1,852 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Area
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Area
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+    
+    \paragraph [Style = "Heading2"]
+    {
+      Area2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Area2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+    
+    // AREA CHART --------------------------------------------------------------
+    \chart(Area2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = Ivory
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.75
+        MajorGridlines.LineFormat.Width = 0.2
+        MajorGridlines.LineFormat.Color = Gray
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLabels.Format = "#"
+      ]
+      \series
+      [
+        Name = "1st Period"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464, 7569, 6169}
+      \series
+      [
+        Name = "2nd Period"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF993366
+      ]
+      {5838, 3681, 6548, 5564}
+      \xvalues
+      {
+        "2000", "2001", "2002", "2003"
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Bar
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Bar
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      Bar2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Bar2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+
+    // BAR CHART ---------------------------------------------------------------
+    \chart(Bar2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Width = 1
+      FillFormat.Color = Lavender
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = Ivory
+        LineFormat.Width = 0.5
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.75
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.75
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464}
+      \series
+      [
+        Name = "2001"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF993366
+      ]
+      {5838, 1681}
+      \xvalues
+      {
+        "1st Period", "2nd Period", 
+      }
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      BarStacked2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(BarStacked2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+
+    \chart(BarStacked2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Width = 1
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = MintCream
+        LineFormat.Width = .25
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+        MinorTickMark = Outside
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464}
+      \series
+      [
+        Name = "2001"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF993366
+      ]
+      {5838, 1681}
+      \xvalues
+      {
+        "1st Period", "2nd Period", 
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Column
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Column
+    }
+    \paragraph [Style = "Comment"]
+    {
+      
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      Column2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Column2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+    
+    // COLUMN CHART ------------------------------------------------------------
+    \chart(Column2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = LightGray
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.75
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        MajorGridlines.LineFormat.Color = Moccasin
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.75
+        MajorGridlines.LineFormat.Color = White
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = false
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464}
+      \series
+      [
+        Name = "2001"
+        LineFormat.Visible = false
+        FillFormat.Color = 0xFF993366
+      ]
+      {5838, 1681}
+      \xvalues
+      {
+        "1st Period", "2nd Period", 
+      }
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      ColumnStacked2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(ColumnStacked2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+
+    \chart(ColumnStacked2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = Ivory
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.75
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        MajorGridLines.LineFormat.Color = Moccasin
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.75
+        MajorGridlines.LineFormat.Color = Blue
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464}
+      \series
+      [
+        Name = "2001"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF993366
+      ]
+      {5838, 1681}
+      \xvalues
+      {
+        "1st Period", "2nd Period", 
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Line
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Line
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can customize the markers in a line style with four attributes, MarkerStyle, MarkerSize,
+      MarkerBackgroundColor, and MarkerForegroundColor. The available marker styles are: None, Circle,
+      Dash, Diamond, Dot, Plus, Square, Star, Triangle and X.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\series \linebreak
+        \{ \linebreak
+          MarkerStyle = Diamond \linebreak
+          MarkerSize = 5 \linebreak
+          MarkerBackgroundColor = DarkBlue \linebreak
+          MarkerForegroundColor = Black \linebreak
+        \} \linebreak
+        \\series \linebreak
+        \{ \linebreak
+          MarkerStyle = Square \linebreak
+          MarkerSize = 5 \linebreak
+          MarkerBackgroundColor = Magenta \linebreak
+          MarkerForegroundColor = Black \linebreak
+        \} \linebreak
+        … \linebreak
+      \}
+    }
+
+    // LINE CHART --------------------------------------------------------------
+    \chart(Line)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = Ivory
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+        MarkerStyle = Diamond
+        MarkerSize = 5
+        MarkerBackgroundColor = DarkBlue
+        MarkerForegroundColor = Black
+      ]
+      {6846, 9464, 1254, 6842}
+      \series
+      [
+        Name = "2001"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF993366
+        MarkerStyle = Square
+        MarkerSize = 5
+        MarkerBackgroundColor = Magenta
+        MarkerForegroundColor = Black
+      ]
+      {5838, 1681, 8481, 3659}
+      \xvalues
+      {
+        "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Pie
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Pie
+    }
+    \paragraph [Style = "Comment"]
+    {
+      
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      Pie2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Pie2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+    
+    // PIE CHART ---------------------------------------------------------------
+    \chart(Pie2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+      FillFormat.Color = Ivory
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464, 5838, 1681}
+      \xvalues
+      {
+        "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"
+      }
+    }
+
+    \paragraph [Style = "Heading2"]
+    {
+      PieExploded2D
+    }
+    \paragraph [Style = "Comment"]
+    {
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(PieExploded2D) \linebreak
+      […] \linebreak
+      \{…\}
+    }
+
+    \chart(PieExploded2D)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+      FillFormat.Color = Ivory
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+      ]
+      {6846, 9464, 5838, 1681}
+      \xvalues
+      {
+        "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Chart - Types - Combine
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Combine
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can combine area, columm and line chart by setting the attribute ChartType in
+      the data series to the wanted type.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\chart(Line) \linebreak
+      […] \linebreak
+      \{ \linebreak
+        … \linebreak
+        \\series \linebreak
+        \{ \linebreak
+          … \linebreak
+        \} \linebreak
+        \\series \linebreak
+        \{ \linebreak
+          ChartStyle = Column2D \linebreak
+          FillFormat.Color = PaleGreen \linebreak
+        \} \linebreak
+        … \linebreak
+      \}
+    }
+
+    \chart(Line)
+    [
+      Height = 200
+      Width = 381
+      LineFormat.Visible = true
+    ]
+    {
+      \plotarea
+      [
+        TopPadding = 10
+        LeftPadding = 10
+        RightPadding = 10
+        BottomPadding = 10
+        FillFormat.Color = Ivory
+        LineFormat.Color = LightGray
+      ]
+      \rightarea [VerticalAlignment = Center]
+      {
+        \legend
+        [
+          Format.Font.Name = "Arial"
+          Format.Font.Size = "10"
+          LineFormat.Width = 0.25
+        ]
+      }
+      \xaxis
+      [
+        LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+      ]
+      \yaxis
+      [
+        LineFormat.Width = 0.25
+        MajorGridLines.LineFormat.Color = Blue
+        MajorGridlines.LineFormat.Width = 0.25
+        TickLabels.Font.Name = "Arial"
+        TickLabels.Font.Size = 10
+        TickLAbels.Format = "#"
+      ]
+      \series
+      [
+        Name = "2000"
+        LineFormat.Visible = true
+        FillFormat.Color = 0xFF9999FF
+        MarkerBackgroundColor = Crimson
+        MarkerForegroundColor = Black
+      ]
+      {6846, 9464, 1254, 6842}
+      \series
+      [
+        ChartType = Column2D
+        Name = "2001"
+        LineFormat.Visible = true
+        FillFormat.Color = PaleGreen
+      ]
+      {5838, 1681, 8481, 3659}
+      \xvalues
+      {
+        "1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"
+      }
+    }
+  }
+}

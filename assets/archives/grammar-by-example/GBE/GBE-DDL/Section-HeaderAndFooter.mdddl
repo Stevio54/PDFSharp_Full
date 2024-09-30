@@ -1,0 +1,635 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Section - Header and Footer - Keywords
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Header and Footer
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The headers and footers in MigraDoc can be defined using the keywords \\header,
+      \\firstpageheader, \\primaryheader, \\evenpageheader, \\footer, \\firstpagefooter,
+      \\primaryfooter and \\evenpagefooter.
+      The headers and footers defined in a section will be implicitly inherited to the
+      next section, this behavior has some advantages which will be explained in the next
+      subsections.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Standard Header and Footer
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The header and footer defined with the keywords \\header and \\footer are the
+      standard header and footer. They are used for all the headers and footers, except
+      when they are defined explicitly.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      \{ \linebreak
+        \\header \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            A standard header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\footer \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            A standard footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      DifferentFirstPageHeaderFooter
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can define a special header and footer for the first page of the section with
+      the \\firstpageheader and \\firstpagefooter keywords. However, the definition will
+      not be active until the DifferentFirstPageHeaderFooter attribute is set to true.
+      By that way, you can choose which section shall have a different first page header
+      and footer, and you only have to define them once. The first page header and footer
+      definition should be written after \\header and \\footer, otherwise it will be overwritten.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section [PageSetup.DifferentFirstPageHeaderFooter = true]\linebreak
+      \{ \linebreak
+        \\header \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            A header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\firstpageheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            First page header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\footer \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            A footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\firstpagefooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            First page footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      OddAndEvenPagesHeaderFooter
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Odd and even pages can have different headers and footers if the
+      OddAndEvenPagesHeaderFooter attribute is set to true.
+      
+      In this case, the header and footer for the odd pages will be taken either
+      from \\header and \\footer or from \\primaryheader and \\primaryfooter,
+      depending on which one has been defined later. The header and footer for the
+      even pages will be taken from \\evenpageheader and \\evenpagefooter, provided
+      that it is defined after \\header and \\footer.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section [PageSetup.OddAndEvenPagesHeaderFooter = true]\linebreak
+      \{ \linebreak
+        \\primaryheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            Odd page header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\evenpageheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            Even page header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\primaryfooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            Odd page footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\evenpagefooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            Even page footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Section - Header and Footer - Examples
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Examples
+    }
+    \paragraph [Style = "Comment"]
+    {
+      To be able to use the links that are placed under each example, you have to
+      convert this document into PDF.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "S3Def"]
+      Section 3
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In this section, all headers and footers will be defined separately, but only
+      the header and footer which are defined in \\primaryheader and \\primaryfooter
+      will be used because the OddAndEvenPagesHeaderFooter and DifferentFirstPageHeaderFooter
+      attributes are not set to true.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup \linebreak
+        \{ \linebreak
+          Orientation = Landscape \linebreak
+          PageFormat = A6 \linebreak
+          StartingNumber = 1 \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\firstpageheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the first page header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\firstpagefooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the first page footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\primaryheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the primary header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\primaryfooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the primary footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\evenpageheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the even page header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\evenpagefooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the even page footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        … \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="Section 3" Type=Local]{To section 3}
+    }
+    \pagebreak
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "S4Def"]
+      Section 4
+    }
+    \paragraph [Style = "Comment"]
+    {
+      No header or footer will be defined in this section. Therefore, the headers and footers
+      defined in the previous section will be used. Furthermore, the DifferentFirstPageHeaderFooter
+      attribute will be set to true.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup \linebreak
+        \{ \linebreak
+          DifferentFirstPageHeaderFooter = true \linebreak
+          StartingNumber = 1 \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="Section 4" Type=Local]{To section 4}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "S5Def"]
+      Section 5
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The OddAndEvenPagesHeaderFooter attribute is set to true in this section, and
+      the primary header and footer will also be redefined. The DifferentFirstPageHeaderFooter
+      attribute is set to false because if it's undefined, the value of the previous
+      section will be used, which is 'true'.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup \linebreak
+        \{ \linebreak
+          OddAndEvenPagesHeaderFooter = true \linebreak
+          DifferentFirstPageHeaderFooter = false \linebreak
+          StartingNumber = 1 \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\primaryheader \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the new primary header. \linebreak
+          \} \linebreak
+        \} \linebreak
+        \\primaryfooter \linebreak
+        \{ \linebreak
+          \\paragraph \linebreak
+          \{ \linebreak
+            This is the new primary footer. \linebreak
+          \} \linebreak
+        \} \linebreak
+        … \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="Section 5" Type=Local]{To section 5}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      \field(Bookmark)[Name = "S6Def"]
+      Section 6
+    }
+    \paragraph [Style = "Comment"]
+    {
+      All three headers and footers are used in this section.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup \linebreak
+        \{ \linebreak
+          DifferentFirstPageHeaderFooter = true \linebreak
+          StartingNumber = 1 \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{ \linebreak
+        … \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \hyperlink[Name="Section 6" Type=Local]{To section 6}
+    }
+  }
+
+  \section
+  [
+    PageSetup
+    {
+      Orientation = Landscape
+      PageFormat = A6
+      StartingNumber = 1
+    }
+  ]
+  {
+    \firstpageheader
+    {
+      \paragraph
+      {
+        This is the first page header.
+      }
+    }
+    \firstpagefooter
+    {
+      \paragraph
+      {
+        This is the first page footer.
+      }
+    }
+    \primaryheader
+    {
+      \paragraph
+      {
+        This is the primary header.
+      }
+    }
+    \primaryfooter
+    {
+      \paragraph
+      {
+        This is the primary footer.
+      }
+    }
+    \evenpageheader
+    {
+      \paragraph
+      {
+        This is the even page header.
+      }
+    }
+    \evenpagefooter
+    {
+      \paragraph
+      {
+        This is the even page footer.
+      }
+    }
+    \paragraph [Format.Alignment = Center]
+    {
+      \field(Bookmark)[Name = "Section 3"]
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S3Def"]{To explanation}
+    }
+    \paragraph
+    \paragraph [Style = "Comment"]
+    {
+      This section uses the same header and footer for all of its pages.
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S3Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S3Def"]{To explanation}
+    }
+  }
+
+  \section
+  [
+    PageSetup
+    {
+      DifferentFirstPageHeaderFooter = true      
+      StartingNumber = 1
+    }
+  ]
+  {
+    \paragraph [Format.Alignment = Center]
+    {
+      \field(Bookmark)[Name = "Section 4"]
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S4Def"]{To explanation}
+    }
+    \paragraph
+    \paragraph [Style = "Comment"]
+    {
+      This section has its DifferentFirstPageHeaderFooter set to true. Therefore, the
+      first page will have a different header and footer.
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S4Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S4Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S4Def"]{To explanation}
+    }
+  }
+
+  \section
+  [
+    PageSetup
+    {
+      OddAndEvenPagesHeaderFooter = true
+      DifferentFirstPageHeaderFooter = false
+      StartingNumber = 1
+    }
+  ]
+  {
+    \primaryheader
+    {
+      \paragraph
+      {
+        This is the new primary header.
+      }
+    }
+    \primaryfooter
+    {
+      \paragraph
+      {
+        This is the new primary footer.
+      }
+    }
+    \paragraph [Format.Alignment = Center]
+    {
+      \field(Bookmark)[Name = "Section 5"]
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S5Def"]{To explanation}
+    }
+    \paragraph
+    \paragraph [Style = "Comment"]
+    {
+      The odd and even pages in this section have different headers and footers.
+      The odd and even pages are based on the page number which is active for the
+      section and not the page number of the document. As you can see, this page
+      uses the primary header and footer which is used for the odd pages, although
+      it is the 12th page of the document.
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S5Def"]{To explanation}
+    }
+    \paragraph
+    \paragraph [Style = "Comment"]
+    {
+      This page is the 13th page of the document but the second page of the section.
+      Therefore, it is considered an even page.
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S5Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S5Def"]{To explanation}
+    }
+  }
+  \section
+  [
+    PageSetup
+    {
+      DifferentFirstPageHeaderFooter = true
+      StartingNumber = 1
+    }
+  ]
+  {
+    \paragraph [Format.Alignment = Center]
+    {
+      \field(Bookmark)[Name = "Section 6"]
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S6Def"]{To explanation}
+    }
+    \paragraph
+    \paragraph [Style = "Comment"]
+    {
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S6Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S6Def"]{To explanation}
+    }
+    \pagebreak
+    \paragraph [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages) \linebreak
+//      \hyperlink[Name="S6Def"]{To explanation}
+    }
+  }
+
+}

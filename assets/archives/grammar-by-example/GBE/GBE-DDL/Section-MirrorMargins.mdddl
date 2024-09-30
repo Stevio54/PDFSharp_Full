@@ -1,0 +1,129 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section
+  [
+    PageSetup
+    {
+      StartingNumber = 1
+      MirrorMargins = true
+      LeftMargin = "3cm"
+      RightMargin = "1cm"
+    }
+  ]
+  {
+    \header
+    {
+      Section - Mirror Margins
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Mirror Margins
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Sometimes it is desireable to use different margins for odd and even pages.
+      One example is the printing of a book where on odd pages the left margin should
+      be bigger than the right margin, and on even pages it should be the other way
+      around. For this case, MigraDoc provides the attribute \bold{MirrorMargins} to
+      exchange the left and the right margin.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup \linebreak
+        \{ \linebreak
+          MirrorMargins = true \linebreak
+          LeftMargin = "3cm" \linebreak
+          RightMargin = "1cm" \linebreak
+        \} \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\paragraph  [Format.Shading.Color = LightYellow] \linebreak
+        \{…\} \linebreak
+        \\pagebreak \linebreak
+        \\paragraph  [Format.Shading.Color = LightYellow] \linebreak
+        \{…\} \linebreak
+      \}
+    }
+    \paragraph [Format.Shading.Color = LightYellow]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This page has a left margin of 3 cm and a right margin of 1 cm.
+    }
+    \pagebreak
+    \paragraph [Format.Shading.Color = LightYellow]
+    {
+      Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat augait eratie modions quisciduisi
+      euissed magna feugiam quat alit amet alit, quamcon henibh eum veros nullan eugiat. Ut ipsummod
+      esto exer in hent lortio odolore dolorer iustis am vullam, quating eugueraestie etumsan ute modions.
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This page has a left margin of 1 cm and a right margin of 3 cm, the exact opposite of the previous
+      page because the \bold{MirrorMargins} attribute is set to true.
+    }
+  }
+}

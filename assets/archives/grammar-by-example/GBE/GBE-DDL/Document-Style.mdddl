@@ -1,0 +1,954 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+    
+    NewCharacterStyle : DefaultParagraphFont
+    {
+    }
+    
+    NewParagraphStyle : Normal
+    {
+    }
+    
+    MyEmphasizeStyle : DefaultParagraphFont
+    {
+      Font.Underline = Dash
+      Font.Italic = True
+    }
+    
+    MyParagraphStyle : Normal
+    {
+      Font.Name = "Courier New"
+      ParagraphFormat.Borders.Top.Style = Dot
+    }
+
+    MyStyle1 : Normal
+    {
+      ParagraphFormat.Font.Name = "Times New Roman"
+      ParagraphFormat.Font.Size = 12
+    }
+
+    MyStyle2 : MyStyle1
+    {
+      ParagraphFormat.Font.Bold = true
+    }
+
+    MyStyle3 : MyStyle2
+    {
+      ParagraphFormat.Font.Italic = true
+    }
+
+    "Style name with blanks" : Normal
+    {
+      ParagraphFormat.Font.Color = Blue
+    }
+    
+    "Dollar $ Style" : Normal
+    {
+      ParagraphFormat.Font.Color = Brown
+    }
+
+    ParagraphStyle1_1 : Normal
+    {
+      Font.Name = "Arial"
+      Font.Size = 8
+      Font.Bold = true
+      Font.Italic = false
+      Font.Underline = Single
+      Font.Color = Green
+      Font.Subscript = false
+      Font.Superscript = false
+    }
+
+    ParagraphStyle1_2 : ParagraphStyle1_1
+    {
+      Font.Bold = false
+      Font.Italic = true
+      Font.Color = Gold
+    }
+
+    ParagraphStyle2_1 : Normal
+    {
+      ParagraphFormat.Alignment = Right
+      ParagraphFormat.LeftIndent = 0
+      ParagraphFormat.RightIndent = 0
+      ParagraphFormat.FirstLineIndent = 0
+      ParagraphFormat.LineSpacingRule = Multiple
+      ParagraphFormat.LineSpacing = 1
+      ParagraphFormat.OutLineLevel = Level1
+      ParagraphFormat.PageBreakBefore = false
+      ParagraphFormat.SpaceAfter = 0
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.KeepTogether = false
+      ParagraphFormat.KeepWithNext = false
+      ParagraphFormat.WidowControl = false
+    }
+    
+    ParagraphStyle2_2 : ParagraphStyle2_1
+    {
+      ParagraphFormat.Alignment = Center
+    }
+    
+    ParagraphStyle3_1 : Normal
+    {
+      ParagraphFormat.TabStops +=
+      {
+        Position = "2cm"
+        Alignment = Center
+        Leader = Spaces        
+      }
+      ParagraphFormat.TabStops +=
+      {
+        Position = "7cm"
+        Alignment = Right
+      }
+      ParagraphFormat.TabStops +=
+      {
+        Position = "5cm"
+      }
+    }
+    
+    ParagraphStyle3_2 : ParagraphStyle3_1
+    {
+      ParagraphFormat.TabStops -= "5cm"
+      ParagraphFormat.TabStops +=
+      {
+        Position = "4cm"
+        Alignment = Right
+      }
+    }
+    
+    ParagraphStyle4_1 : Normal
+    {
+      ParagraphFormat.Borders
+      {
+        Visible = true
+        Style = Single
+        Color = Blue
+        DistanceFromTop = 1
+        DistanceFromLeft = 1
+        DistanceFromRight = 1
+        DistanceFromBottom = 1
+      }
+    }
+    
+    ParagraphStyle4_2 : ParagraphStyle4_1
+    {
+      ParagraphFormat.Borders.Top.Visible = false
+    }
+    
+    ParagraphStyle5_1 : Normal
+    {
+      ParagraphFormat.Shading.Color = LightBlue
+    }
+    
+    ParagraphStyle5_2 : ParagraphStyle5_1
+    {
+      ParagraphFormat.Shading.Visible = false
+    }
+    
+    ParagraphStyle5_3 : ParagraphStyle5_2
+    {
+      ParagraphFormat.Shading.Visible = true
+    }
+    
+    ParagraphStyle6_1 : Normal
+    {
+      ParagraphFormat.ListInfo
+      {
+        ListType = BulletList1
+        NumberPosition = 12
+      }
+    }
+    
+    ParagraphStyle6_2 : ParagraphStyle6_1
+    {
+      ParagraphFormat.ListInfo
+      {
+        NumberPosition = 0
+        ContinuePreviousList = false
+      }
+    }
+    ParagraphStyle6_3 : Normal
+    {
+      ParagraphFormat.LeftIndent = 50
+      ParagraphFormat.ListInfo
+      {
+        ListType = NumberList2
+        ContinuePreviousList = true
+        NumberPosition = 30
+      }
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Style - Style type
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Style Type
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are two style types in MigraDoc, character style and paragraph style.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Character Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A character style can only be derived from another character style or from the
+      'DefaultParagraphFont' style. 
+      It controls only the font attributes of the text and is usually used to emphasize short parts of text within a paragraph.\linebreak
+      Note that all parts not defined in the style definitions stay unchanged to the font used before.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles\linebreak
+      \{\linebreak
+        MyEmphasizeStyle : DefaultParagraphFont\linebreak
+        \{\linebreak
+          Font.Underline = Dashes\linebreak
+          Font.Italic = True\linebreak
+        \}\linebreak
+      \}\linebreak
+      …\linebreak
+      \\paragraph[Format.Font.Color = blue]\linebreak
+      \{ \linebreak
+        Use of the character style \\font("MyEmphasizeStyle")\{'MyEmphasizeStyle'\}.\linebreak
+      \}
+    }
+    \paragraph[Format.Font.Color = blue]
+    {
+      Use of the character style \font("MyEmphasizeStyle"){'MyEmphasizeStyle'}.
+    }
+    \paragraph[Style = "Comment"]
+    {
+      If a character style is assigned to
+      the style of a paragraph, only the font formatting
+      of the paragraph will be changed. All further attributes are taken from the 'Normal' style, if not defined in the given paragraph's format itself.
+      
+      Note that this procedure does \bold{not} meet the intention of character styles!
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Style = "MyEmphasizeStyle"]\linebreak
+      \{ \linebreak
+        This paragraph uses 'MyEmphasizeStyle'.\linebreak
+      \}
+    }
+    \paragraph[Style = "MyEmphasizeStyle"]
+    {
+      This paragraph uses 'MyEmphasizeStyle'.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Paragraph Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A paragraph style controls the whole formatting of a paragraph,
+      that means both the layout of the paragraph including borders and
+      shading, and the font of the text. It is intended to be assigned to paragraphs.
+      A paragraph style can only
+      be derived from another paragraph style or from the Normal style.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles\linebreak
+      \{\linebreak
+        MyParagraphStyle : Normal\linebreak
+        \{\linebreak
+          Font.Name = "Courier New"\linebreak
+          ParagraphFormat.Borders.Top.Style = Dot\linebreak
+        \}\linebreak
+      \}\linebreak
+      …\linebreak
+      \\paragraph[Style = "MyParagraphStyle"]\linebreak
+      \{ \linebreak
+        Use of the paragraph style 'MyParagraphStyle'.\linebreak
+      \}
+    }
+    \paragraph[Style = "MyParagraphStyle"]
+    {
+      Use of the paragraph style 'MyParagraphStyle'.
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If a paragraph style is used within the \\font keyword,
+      only the style's font part is used. The layout stays unchanged.
+      
+      Note that this procedure does \bold{not} meet the intention of paragraph styles!
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph[Format.Font.Color = blue]\linebreak
+      \{ \linebreak
+        Use of the paragraph style \\font("MyParagraphStyle")\{'MyParagraphStyle'\}\linebreak 
+        within a text.\linebreak
+      \}
+    }
+
+    \paragraph[Format.Font.Color = blue]
+    {
+      Use of the paragraph style \font("MyParagraphStyle"){'MyParagraphStyle'} within a text.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Style - Modify Style
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Modifying Built-in Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Almost all of the built-in styles in MigraDoc can be modified to fit the
+      needs of the document. The only exception is the character style
+      'DefaultParagraphFont'. It has no attributes set and  must be kept as it
+      is, it can serve as base for any character style.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Modifying the Style's Attributes
+    }
+    \paragraph [Style = "Comment"]
+    {
+      All of the paragraph styles in MigraDoc are derived from the
+      'Normal' style which uses the font 'Verdana' with a size of 10 pt.
+      For example, if the document you create uses Arial with a size of 8 pt,
+      you can simply change the font name und size attributes of the 'Normal'
+      style to change the default font formatting of the whole document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        Normal \linebreak
+        \{ \linebreak
+          Format.Font.Name = "Arial" \linebreak
+          Format.Font.Size = 8 \linebreak
+        \} \linebreak
+      \}
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Modifying the Style's Base Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If you want to keep the default formatting of the document but the headings should use
+      a different font, you can do it in two ways. Either you can change the font of Heading1
+      which will change the font of all the headings. Or you can create a new style which serves
+      as a default style for the headings, and then you change the base style of Heading1.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        StandardHeading \linebreak
+        \{ \linebreak
+          Format.Font.Name = "Times New Roman" \linebreak
+          Format.Font.Size = 16 \linebreak
+        \} \linebreak
+         \linebreak
+        Heading1 : StandardHeading \linebreak
+      \}
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Creating new Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Complexer documents may need more styles than the built-in styles. In this case, you can
+      define new styles that will suit the document's needs.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      New Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A style in MigraDoc has to be derived from a base style, otherwise the style will not be
+      created and all texts that are defined to use this style will use InvalidStyleName,
+      instead. The base style that is used for the new style must be defined before the new style,
+      otherwise InvalidStyleName will be used as the base style, instead. Style names can contain
+      blanks and special characters. If they do, the name must be surrounded by quotation marks.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        MyStyle1 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Font.Name = "Times New Roman" \linebreak
+          ParagraphFormat.Font.Size = 12 \linebreak
+        \} \linebreak
+         \linebreak
+        MyStyle2 : MyStyle1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Font.Bold = true \linebreak
+        \} \linebreak
+         \linebreak
+        MyStyle3 : MyStyle2 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Font.Italic = true \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "MyStyle1"] \linebreak
+      \{ \linebreak
+        This is the MyStyle1 style. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "MyStyle2"] \linebreak
+      \{ \linebreak
+        This is the MyStyle2 style. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "MyStyle3"] \linebreak
+      \{ \linebreak
+        This is the MyStyle3 style. \linebreak
+      \}
+    }
+    \paragraph [Style = "MyStyle1"]
+    {
+      This is the MyStyle1 style.
+    }
+    \paragraph [Style = "MyStyle2"]
+    {
+      This is the MyStyle2 style.
+    }
+    \paragraph [Style = "MyStyle3"]
+    {
+      This is the MyStyle3 style.
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Style Name
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Style names can contain blanks and special characters. If they do, the
+      name must be surrounded by quotation marks.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        "Style name with blanks" : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Font.Color = Blue \linebreak
+        \} \linebreak
+         \linebreak
+        "Dollar $ Style" : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Font.Color = Brown \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "Style name with blanks"] \linebreak
+      \{ \linebreak
+        This is the Style name with blanks style. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "Dollar $ Style"] \linebreak
+      \{ \linebreak
+        This is the Dollar $ Style style. \linebreak
+      \}
+    }
+    \paragraph [Style = "Style name with blanks"]
+    {
+      This is the Style name with blanks style.
+    }
+    \paragraph [Style = "Dollar $ Style"]
+    {
+      This is the Dollar $ Style style.
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Style - Style Structure
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Inheritance Behavior of Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A style contains several formatting definitions, both for layout formatting and
+      text formatting. The layout formatting is only available for the paragraph styles.
+      All of these formatting definitions are inherited if a style is derived from another style.
+      That means if a new style is created without any additional formatting definition,
+      then the new style will be identical with its base style except for the style name.
+      If the derived style has any format defined, then the defined format will be used
+      instead of the inherited format. 
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Font
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The font is the only style format that is available for both, character and paragraph
+      style, and defines how a text is formatted. The usage of each attribut of the font
+      format is explained in the 'Paragraph-Font' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle1_1 : Normal \linebreak
+        \{ \linebreak
+          Font.Name = "Arial" \linebreak
+          Font.Size = 8 \linebreak
+          Font.Bold = true \linebreak
+          Font.Italic = false \linebreak
+          Font.Underline = Single \linebreak
+          Font.Color = Green \linebreak
+          Font.Subscript = false \linebreak
+          Font.Superscript = false \linebreak
+        \} \linebreak
+        ParagraphStyle1_2 : ParagraphStyle1_1 \linebreak
+        \{ \linebreak
+          Font.Bold = false \linebreak
+          Font.Italic = true \linebreak
+          Font.Color = Gold \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle1_1"] \linebreak
+      \{ \linebreak
+        This is ParagraphStyle1_1 style. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle1_2"] \linebreak
+      \{ \linebreak
+        This is ParagraphStyle1_2 style. \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle1_1"]
+    {
+      This is ParagraphStyle1_1 style.
+    }
+    \paragraph [Style = "ParagraphStyle1_2"]
+    {
+      This is ParagraphStyle1_2 style.
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      ParagraphFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      ParagraphFormat is only available for the paragraph style and defines the layout of
+      a paragraph. A detailed explanation of the attributes in ParagraphFormat is available
+      in the 'Paragraph-Layout' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle2 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Alignment = Right \linebreak
+          ParagraphFormat.LeftIndent = 0 \linebreak
+          ParagraphFormat.RightIndent = 0 \linebreak
+          ParagraphFormat.FirstLineIndent = 0 \linebreak
+          ParagraphFormat.LineSpacingRule = Multiple \linebreak
+          ParagraphFormat.LineSpacing = 1 \linebreak
+          ParagraphFormat.OutLineLevel = Level1 \linebreak
+          ParagraphFormat.PageBreakBefore = false \linebreak
+          ParagraphFormat.SpaceAfter = 0 \linebreak
+          ParagraphFormat.SpaceBefore = 0 \linebreak
+          ParagraphFormat.KeepTogether = false \linebreak
+          ParagraphFormat.KeepWithNext = false \linebreak
+          ParagraphFormat.WidowControl = false \linebreak
+        \} \linebreak
+        ParagraphStyle2_2 : ParagraphStyle2_1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Alignment = Center \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle2_1"] \linebreak
+      \{ \linebreak
+        This is ParagraphStyle2_1 style. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle2_2"] \linebreak
+      \{ \linebreak
+        This is ParagraphStyle2_2 style. \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle2_1"]
+    {
+      This is ParagraphStyle2_1 style.
+    }
+    \paragraph [Style = "ParagraphStyle2_2"]
+    {
+      This is ParagraphStyle2_2 style.
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      TabStops
+    }
+    \paragraph [Style = "Comment"]
+    {
+      TabStops defines where each tabulator stops and their behavior. TabStops
+      are only available for paragraph style and explained in the 'Paragraph-Tabs' sample.
+      
+      The following example demonstrates how one tabstop is added to and another
+      one is removed from an inherited tabstop list.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle3_1 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.TabStops += \linebreak
+          \{ \linebreak
+            Position = "2cm" \linebreak
+            Alignment = Center \linebreak
+            Leader = Spaces \linebreak
+          \} \linebreak
+          ParagraphFormat.TabStops += \linebreak
+          \{ \linebreak
+            Position = "7cm" \linebreak
+            Alignment = Right \linebreak
+          \} \linebreak
+          ParagraphFormat.TabStops += \linebreak
+          \{ \linebreak
+            Position = "5cm" \linebreak
+          \} \linebreak
+        \} \linebreak
+        ParagraphStyle3_2 : ParagraphStyle3_1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.TabStops -= "5cm" \linebreak
+          ParagraphFormat.TabStops += \linebreak
+          \{ \linebreak
+            Position = "4cm" \linebreak
+            Alignment = Right \linebreak
+          \} \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle3_1"] \linebreak
+      \{ \linebreak
+        TT \\tab TT \\tab TT \\tab TT \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle3_2"] \linebreak
+      \{ \linebreak
+        TT \\tab TT \\tab TT \\tab TT \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle3_1"]
+    {
+      TT \tab TT \tab TT \tab TT
+    }
+    \paragraph [Style = "ParagraphStyle3_2"]
+    {
+      TT \tab TT \tab TT \tab TT
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Borders
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The borders that surround the paragraph can be defined individually for each side:
+      top, bottom, left, and right. Each attribute is explained in the 'Paragraph-Layout' sample.
+      
+      The following example demonstrates how a single border, inherited from a base style,
+      can be made invisible.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle4_1 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Borders \linebreak
+          \{ \linebreak
+            Visible = true \linebreak
+            Style = Single \linebreak
+            Color = Blue \linebreak
+            DistanceFromTop = 1 \linebreak
+            DistanceFromLeft = 1 \linebreak
+            DistanceFromRight = 1 \linebreak
+            DistanceFromBottom = 1 \linebreak
+          \} \linebreak
+        \} \linebreak
+        ParagraphStyle4_2 : ParagraphStyle4_1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Borders.Top.Visible = false \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle4_1"] \linebreak
+      \{ \linebreak
+        This is a paragraph with a complete border. \linebreak
+      \} \linebreak
+      \\paragraph \linebreak
+      \\paragraph [Style = "ParagraphStyle4_2"] \linebreak
+      \{ \linebreak
+        This is a paragraph without the top border. \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle4_1"]
+    {
+      This is a paragraph with a complete border.
+    }
+    \paragraph
+    \paragraph [Style = "ParagraphStyle4_2"]
+    {
+      This is a paragraph without the top border.
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Shading
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Shading defines the background color of the paragraph and is only available for
+      the paragraph style.
+      A complete explanation can be found in the 'Paragraph-Layout' sample.
+      
+      The following example demonstrates how a shading can be switched off and on using the 'Visible' attribute.
+      Note that the shading keeps its color within the inheritance succession.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle5_1 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.Shading.Color = LightBlue \linebreak
+        \} \linebreak
+        ParagraphStyle5_2 : ParagraphStyle5_1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Shading.Visible = false \linebreak
+        \} \linebreak
+        ParagraphStyle5_3 : ParagraphStyle5_2 \linebreak
+        \{ \linebreak
+          ParagraphFormat.Shading.Visible = true \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle5_1"] \linebreak
+      \{ \linebreak
+        This paragraph's background color is set to LightBlue. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle5_2"] \linebreak
+      \{ \linebreak
+        This paragraph's background color is switched off. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle5_3"] \linebreak
+      \{ \linebreak
+        The background color is switched on again, and keeps its original color. \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle5_1"]
+    {
+      This paragraph's background color is set to LightBlue.
+    }
+    \paragraph [Style = "ParagraphStyle5_2"]
+    {
+      This paragraph's background color is switched off.
+    }
+    \paragraph [Style = "ParagraphStyle5_3"]
+    {
+      The background color is switched on again, and keeps its original color.
+    }
+    \pagebreak
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      ListInfo
+    }
+    \paragraph [Style = "Comment"]
+    {
+      ListInfo defines the layout of a list and is available only for paragraph styles.
+      A complete explanation can be found in the 'Paragraph-Layout' sample.
+      
+      The following example demonstrates how single list attributes can be kept
+      or overriden when inheriting from a base style.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        ParagraphStyle6_1 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.ListInfo \linebreak
+          \{ \linebreak
+            ListType = BulletList1 \linebreak
+            NumberPosition = 12 \linebreak
+          \} \linebreak
+        \} \linebreak
+        ParagraphStyle6_2 : ParagraphStyle6_1 \linebreak
+        \{ \linebreak
+          ParagraphFormat.ListInfo \linebreak
+          \{ \linebreak
+            NumberPosition = 0 \linebreak
+            ContinuePreviousList = false \linebreak
+          \} \linebreak
+        \} \linebreak
+        ParagraphStyle6_3 : Normal \linebreak
+        \{ \linebreak
+          ParagraphFormat.LeftIndent = 50 \linebreak
+          ParagraphFormat.ListInfo \linebreak
+          \{ \linebreak
+            ListType = NumberList2 \linebreak
+            ContinuePreviousList = true \linebreak
+            NumberPosition = 30 \linebreak
+          \} \linebreak
+        \} \linebreak
+      \} \linebreak
+      …\linebreak
+      \\paragraph [Style = "ParagraphStyle6_1"] \linebreak
+      \{ \linebreak
+        Line1 \linebreak
+       \linebreak
+        Line2 \linebreak
+       \linebreak
+        Line3 \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle6_2"] \linebreak
+      \{ \linebreak
+        Line1 \linebreak
+       \linebreak
+        Line2 \linebreak
+       \linebreak
+        Line3 \linebreak
+      \} \linebreak
+      \\paragraph [Style = "ParagraphStyle6_3"] \linebreak
+      \{ \linebreak
+        Line1 \linebreak
+        \linebreak
+        Line2 \linebreak
+        \linebreak
+        Line3 \linebreak
+      \}
+    }
+    \paragraph [Style = "ParagraphStyle6_1"]
+    {
+      Line1
+      
+      Line2
+      
+      Line3
+    }
+    \paragraph [Style = "ParagraphStyle6_2"]
+    {
+      Line1
+      
+      Line2
+      
+      Line3
+    }
+    \paragraph [Style = "ParagraphStyle6_3"]
+    {
+      Line1
+      
+      Line2
+      
+      Line3
+    }
+  }
+}

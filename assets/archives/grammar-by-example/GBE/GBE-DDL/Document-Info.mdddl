@@ -1,0 +1,125 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+[
+  Info.Title    = "Title of my document"
+  Info.Subject  = "Subject of my document"
+  Info.Author   = "empira Software GmbH, Germany"
+  Info.Keywords = "MigraDoc, documents on the fly, DDL"
+]
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Info
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      DocumentInfo
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Each MigraDoc document can have general informations about itself which 
+      can be defined in the 'Info' attribute of the document.
+      These Informations will be availabe as document properties in PDF Output.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Defining Document Info
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\document \linebreak
+      [ \linebreak
+        Info.Title    = "Title of my document" \linebreak
+        Info.Subject  = "Subject of my document"  \linebreak
+        Info.Author   = "empira Software GmbH, Germany" \linebreak
+        Info.Keywords = "MigraDoc, documents on the fly, DDL" \linebreak
+      ]
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Referencing Document Info
+    }
+    \paragraph [Style = "Comment"]
+    {
+      DocumentInfo can be referenced within paragraphs using the \\field(Info) keyword.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "2cm"\}] \linebreak
+      \{ \linebreak
+        Title:    \\tab \\field(Info)[Name="Title"] \\linebreak \linebreak
+        Subject:  \\tab \\field(Info)[Name="Subject"] \\linebreak \linebreak
+        Author:   \\tab \\field(Info)[Name="Author"] \\linebreak \linebreak
+        Keywords: \\tab \\field(Info)[Name="Keywords"]\linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "2cm"}]
+    {
+      Title:    \tab \field(Info)[Name="Title"] \linebreak
+      Subject:  \tab \field(Info)[Name="Subject"] \linebreak
+      Author:   \tab \field(Info)[Name="Author"] \linebreak
+      Keywords: \tab \field(Info)[Name="Keywords"]
+    }
+  }
+}

@@ -1,0 +1,369 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    // The base style from Heading5 is set to Normal because Heading1 and Heading2 is
+    // overwritten und used in the document.
+    Heading5 : Normal
+    {
+      Font.Color = Blue
+      Font.Bold = true
+      Font.Underline = Single
+      Font.Size = 15
+    }
+    
+    Heading6
+    {
+      Font.Color = Magenta
+      Font.Size = 13
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+    
+    BoldText : DefaultParagraphFont
+    {
+      Font.Bold = true
+    }
+    
+    List
+    {
+      ParagraphFormat.ListInfo.ListType = BulletList1
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Styles - Character Styles
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Built-in Character Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc defines 3 character styles which control the font formatting
+      of the text and can be directly used in the document without the need to be defined explicitly.
+      Almost all of them however can be redefined to suit the needs of the document.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      DefaultParagraphFont
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This is the base character style which cannot be redefined.
+      It can only be used as a base style for a character style.
+      None of its attributes is defined.
+      If an inherited style is used to format a text, only the defined attributes are used.
+      Undefined attributes stay unchanged.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        BoldText : DefaultParagraphFont \linebreak
+        \{ \linebreak
+          Font.Bold = true \linebreak
+        \} \linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph [Format.Font.Italic = true] \linebreak
+      \{ \linebreak
+        This is a \\font("BoldText")\{BoldText\} style. \linebreak
+      \}
+    }
+    \paragraph [Format.Font.Italic = true]
+    {
+      This is a \font("BoldText"){BoldText} style.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Hyperlink
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The Hyperlink character style is automatically used to format
+      hyperlinks defined by the keyword \\hyperlink.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        This is a \\hyperlink[Name="TestHyperlink"]\{Hyperlink\} style. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      This is a \hyperlink[Name="TestHyperlink"]{Hyperlink} style.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      InvalidStyleName
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This character style is used by MigraDoc when the given style is undefined.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        The style \\font("UndefinedStyleName")\{UndefinedStyleName\}\linebreak
+        was not defined in this document. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      The style \font("UndefinedStyleName"){UndefinedStyleName}
+      was not defined in this document.
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Document - Styles - Paragraph Styles
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Built-in Paragraph Styles
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc also defines 14 paragraph styles which control not
+      only the font formatting of the text, but also the layout of
+      the paragraph in which the style is used. Like the built-in
+      character styles, the built-in paragraph styles can also be
+      directly used in the document without the need to be defined explicitly.
+      All of the built-in paragraph styles can be redefined to suit the needs of the document.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Normal
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This is the default paragraph style which is used by MigraDoc
+      to format the text when no style is given.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        This is an \\font("Normal")\{Normal\} style. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      This is a \font("Normal"){Normal} style.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Heading1 - Heading9
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are nine (9) built-in heading styles in MigraDoc which are named Heading1 to Heading9.
+      Each heading uses the previous heading as base style, for example, Heading9 uses Heading8 as
+      base style, Heading8 uses Heading7 and so forth. An exception is Heading1, it uses Normal as
+      its base style. With this hierarchy, each Heading can have a new special attribute added to it
+      while inheriting the attributes of the previous Headings. The outline level of each
+      Heading is set corresponding to its number.\linebreak 
+      Generally, the outline level can only be redefined by assignment, not by deriving from another style.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles \linebreak
+      \{ \linebreak
+        Heading5 \linebreak
+        \{ \linebreak
+          Font.Color = Blue \linebreak
+          Font.Bold = true \linebreak
+          Font.Underline = Single \linebreak
+          Font.Size = 15 \linebreak
+        \} \linebreak
+        Heading6 \linebreak
+        \{ \linebreak
+          Font.Color = Magenta \linebreak
+          Font.Size = 13 \linebreak
+        \} \linebreak
+      \} \linebreak
+      … \linebreak
+      \\paragraph [Style = "Heading5"] \linebreak
+      \{ \linebreak
+        Heading5. \linebreak
+      \} \linebreak
+      \\paragraph [Style = "Heading6"] \linebreak
+      \{ \linebreak
+        Heading6. \linebreak
+      \}
+    }
+    \paragraph [Style = "Heading5"]
+    {
+      Heading5.
+    }
+    \paragraph [Style = "Heading6"]
+    {
+      Heading6.
+    }
+    
+    // -------------------------------------------------------------------------
+    \pagebreak
+    \paragraph [Style = "Heading2"]
+    {
+      List
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The list style can be used for paragraphs that represent an enumeration.
+      Note that the built-in style "List" does \bold{not} define a specific list symbol.
+      
+      So you should override the built-in style to fit your needs e. g. with ListType 'BulletList1', as done in this document.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\styles\linebreak
+      \{\linebreak
+        List\linebreak
+        \{\linebreak
+          ParagraphFormat.ListInfo.ListType = BulletList1\linebreak
+        \}\linebreak
+      \}\linebreak
+      …\linebreak
+      \\paragraph [Style = "List"]\linebreak
+      \{ \linebreak
+        First list entry. \linebreak
+         \linebreak
+        Second list entry. \linebreak
+         \linebreak
+        Third list entry. \linebreak
+         \linebreak
+        Fourth list entry. \linebreak
+      \}
+    }
+    \paragraph [Style = "List"]
+    {
+      First list entry.
+      
+      Second list entry.
+      
+      Third list entry.
+      
+      Fourth list entry.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Footnote
+    }
+    \paragraph [Style = "Comment"]
+    {
+      When a footnote is created with the keyword \\footnote and no style is given,
+      the style Footnote will be automatically applied to the footnote's content.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        \\footnote\{This is footnote number one.\}Explained in footnote number one. \linebreak
+         \linebreak
+        \\footnote\{This is footnote number two.\}Explained in footnote number two. \linebreak
+      \}
+    }
+    \paragraph
+    {
+      \footnote{This is footnote number one.}Explained in footnote number one.
+      
+      \footnote{This is footnote number two.}Explained in footnote number two.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Header
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The Header style is derived from the Normal style. It is automatically used to format
+      the header if no other style is assigned to the header.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Footer
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The Footer style is derived from the Normal style. It is automatically used to format
+      the footer if no other style is assigned to the footer.
+    }
+  }
+}

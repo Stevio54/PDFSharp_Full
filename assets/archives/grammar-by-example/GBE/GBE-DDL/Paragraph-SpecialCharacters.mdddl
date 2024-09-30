@@ -1,0 +1,128 @@
+//
+// MigraDoc DDL ...
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Special Characters
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Special Characters
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Migradoc provides some named symbols to be used in DDL.
+      Moreover, ASCII codes can be used to insert a character that is e.g. not present on the keyboard.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Symbol
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc defines several symbols, which can be used with the \\symbol() keyword.
+    }
+       \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm"\}]\linebreak
+      \{ \linebreak
+        Euro \\tab \\symbol(Euro) \\linebreak \linebreak
+        Copyright \\tab \\symbol(Copyright) \\linebreak \linebreak
+        Trademark \\tab \\symbol(Trademark) \\linebreak \linebreak
+        RegisteredTrademark \\tab \\symbol(RegisteredTrademark) \\linebreak \linebreak
+        Bullet \\tab \\symbol(Bullet) \\linebreak \linebreak
+        Not \\tab \\symbol(Not) \\linebreak \linebreak
+        EmDash \\tab \\symbol(EmDash) \\linebreak \linebreak
+        EnDash \\tab \\symbol(EnDash)\linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm"}]
+    {
+      Euro \tab \symbol(Euro) \linebreak
+      Copyright \tab \symbol(Copyright) \linebreak
+      Trademark \tab \symbol(Trademark) \linebreak
+      RegisteredTrademark \tab \symbol(RegisteredTrademark) \linebreak
+      Bullet \tab \symbol(Bullet) \linebreak
+      Not \tab \symbol(Not) \linebreak
+      EmDash \tab \symbol(EmDash) \linebreak
+      EnDash \tab \symbol(EnDash)
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Chr (Character)
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can use ASCII codes in decimal or hexadecimal represantation using either the \\chr() or \\() keyword.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm"\}]\linebreak
+      \{ \linebreak
+        \\\\(156) \\tab \\(156) \\linebreak \linebreak
+        \\\\(0xFF) \\tab \\(0xFF) \linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm"}]
+    {
+      \\(156) \tab \(156) \linebreak
+      \\(0xFF) \tab \(0xFF)
+    }
+  }
+}

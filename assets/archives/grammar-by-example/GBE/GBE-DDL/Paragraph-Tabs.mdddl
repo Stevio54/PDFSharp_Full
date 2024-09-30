@@ -1,0 +1,251 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Paragraph - Tabs
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Tabs
+    }
+    \paragraph [Style = "Comment"]
+    {
+      With tabulators, you can easily position words within paragraphs.
+      Note that HTML specifications do not support any pendant to tabs,
+      so tabs will be rendered as spaces in HTML.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Default
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The default tab stop distance is 1.25 cm. It can be changed with the
+      \bold{DefaultTabStop} property of the document object.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph \linebreak
+      \{ \linebreak
+        T \\tab T \\tab T \\tab T \\tab T \\tab T \\tab T \\tab T \\tab T \\tab T \\tab T \linebreak
+      \}
+    }
+    \paragraph
+    {
+      T \tab T \tab T \tab T \tab T \tab T \tab T \tab T \tab T \tab T \tab T
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Adding a Tab
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A new tab is added to the TabStops collection.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm"\}] \linebreak
+      \{ \linebreak
+        \\tab Default alignment is left \linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm"}]
+    {
+      \tab Default alignment is left
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Removing a Tab
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A tab inherited from a style can be removed with the \bold{-=} operator. The tab 
+      is identified by its position. Because the position can be specified in
+      different units of measure, it is not exact. Rounding errors occur
+      when the unit is converted into the internal unit Points. Therefore, the
+      position is interpreted a little bit fuzzy to find the right tab to
+      remove.
+      
+      See \bold{Document - Style.mdddl} for more details.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Tab Alignment
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Tabs have an alignment. It can be Left, Right, Center or Decimal.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm" Alignment = Left\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Alignment = Right\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Alignment = Center\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Alignment = Decimal\}] \{…\}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Alignment = Left}]
+    {
+      \tab Left
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Alignment = Right}]
+    {
+      \tab Right
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Alignment = Center}]
+    {
+      \tab Center
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Alignment = Decimal}]
+    {
+      \tab 12,345,678.90$ \linebreak
+      \tab 1.234,56€
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The decimal tabulator works with both dot and comma. The last character of one of these kinds appearing is used for alignment:
+      if there is none, the tab works like being right aligned.
+    }
+    \pagebreak
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Tab Leader
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Tabs have a leader that defines how to fill the space the tab causes.
+      The default leader is Spaces.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Spaces\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Dots\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Dashes\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Lines\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = MiddleDot\}] \{…\} \linebreak
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Heavy\}] \{…\}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Spaces}]
+    {
+      Text \tab Spaces
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Dots}]
+    {
+      Text \tab Dots
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Dashes}]
+    {
+      Text \tab Dashes
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Lines}]
+    {
+      Text \tab Lines
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = MiddleDot}]
+    {
+      Text \tab MiddleDot
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Heavy}]
+    {
+      Text \tab Heavy
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Tabs and Spaces
+    }
+    \paragraph [Style = "Comment"]
+    {
+      All spaces before and after the \\tab keyword are ignored. To get a space
+      before or after the leading, insert a non-breakable blank.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\paragraph [Format.TabStops += \{Position = "5cm" Leader = Dots\}] \linebreak
+      \{ \linebreak
+        Text \\tab non-breakable blank before and after \\\\tab. \linebreak
+      \}
+    }
+    \paragraph [Format.TabStops += {Position = "5cm" Leader = Dots}]
+    {
+      Text \tab non-breakable blank before and after \\tab.
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A non-breakable blank can also be entered by typing Alt+255 on the num pad. There is of
+      course the key word \\space to declare one or more spaces but it is less readable
+      in some situations.
+      
+      Alt+255 inserts the ANSI character 160, the same as Alt+0160. 
+      
+    }
+  }
+}

@@ -1,0 +1,300 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+  ]
+  {
+    \header
+    {
+      Section - Page Layout
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Page Layout
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      PageFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If you are using a standarized paper size, you can easily define it in the
+      \bold{PageFormat} attribute. MigraDoc supports several page formats, which
+      are \italic{A0} to \italic{A6}, \italic{B5}, \italic{letter}, \italic{legal},
+      \italic{ledger} and \italic{p11x17}. The default value of \bold{PageFormat}
+      is \italic{A4}.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      \{…\}
+    }
+
+    \paragraph [Style = "Comment"]
+    {
+      This page is set to format "A4" by default.
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.PageFormat = A5
+  ]
+  {
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Comment"]
+    {
+      Change the page format by setting the attribute \bold{PageSetup.PageFormat} to an
+      appropriate value like \italic{A5}.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\section\linebreak
+      [\linebreak
+        PageSetup.PageFormat = A5\linebreak
+      ]\linebreak
+      \{…\}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This page is set to format "A5".
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.PageFormat = A4
+    PageSetup.Orientation = Landscape
+  ]
+  {
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Orientation
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The \bold{Orientation} attribute can take two possible values, which are
+      \italic{Portrait} and \italic{Landscape}.
+      In the portrait orientation, the page height is bigger than the width, and in the
+      landscape orientation, it's the other way round. When the orientation is set, the page height
+      and width may be swapped to fit the definition above.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup.Orientation = Landscape \linebreak
+      ] \linebreak
+      \{…\}
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.PageHeight = "15cm"
+    PageSetup.PageWidth = "15cm"
+  ]
+  {
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Page Size
+    }
+    \paragraph [Style = "Comment"]
+    {
+      To use custom size papers, you can use the \bold{PageWidth} and \bold{PageHeight} attributes.
+      Both attributes can be defined using several units of measure, a detailed explanation
+      can be found in the 'Attributes-Units' sample.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup\linebreak
+        \{\linebreak
+          PageHeight = "15cm"\linebreak
+          PageWidth = "15cm"\linebreak
+        \}\linebreak
+      ]\linebreak
+      \{…\}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See this page shrunk to 15 x 15 cm.
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.PageFormat = A4
+    PageSetup.Orientation = Portrait
+    PageSetup.LeftMargin = "5cm"
+    PageSetup.RightMargin = "5cm"
+  ]
+  {
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Margins
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Margins are the distances between the paper edges and the text body.
+      There are four margins, those are \bold{TopMargin}, \bold{BottomMargin},
+      \bold{LeftMargin} and \bold{RightMargin}.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup.LeftMargin = "5cm" \linebreak
+        PageSetup.RightMargin = "5cm" \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The left and right margins of this page are set to 5 cm.
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.LeftMargin = "2.5cm"
+    PageSetup.RightMargin = "2.5cm"
+    PageSetup.FooterDistance = "5cm"
+  ]
+  {
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Distances
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are two distances that can be set on the PageSetup, which are \bold{HeaderDistance}
+      and \bold{FooterDistance}. These distances define the distance between the top edge and the header
+      or the bottom edge and the footer, respectively.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup.FooterDistance = "5cm" \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See how the footer of this page moved up 5 cm.
+    }
+  }
+
+  \section
+  [
+    PageSetup.StartingNumber = 1
+    PageSetup.HeaderDistance = "4.5cm"
+    PageSetup.TopMargin = "6cm"
+  ]
+  {
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Distances
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Note that the margins and the distances do not depend on one another. In other words, you can
+      define a header distance of 4.5 cm and a top margin of 2 cm. The text will be displayed at the
+      specified position, even if it overlapps. To prevent this you should set \bold{TopMargin} to an
+      appropiate value.
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\section \linebreak
+      [ \linebreak
+        PageSetup.HeaderDistance = "4.5cm" \linebreak
+        PageSetup.TopMargin = "6cm" \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See how header and text moved down on this page.
+    }
+  }
+}

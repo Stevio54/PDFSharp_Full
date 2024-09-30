@@ -1,0 +1,585 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Cell Layout - Alignment
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Alignment
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The alignment of a table cell can be controlled for each cell separately.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Alignment of the Cell Contents
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The contents of a cell can be horizontally and vertically aligned.
+      The vertical alignment is an attribute of the cell or the row.
+      The horizontal alignment is controlled by the paragraph alignment.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table \linebreak
+      [ Borders.Width = 2 \linebreak
+        Format.Shading.Color = LavenderBlush \linebreak
+        Shading.Color = Salmon \linebreak
+        TopPadding = 2 BottomPadding = 2 \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{ \linebreak
+          \\column [Format.Alignment = Left] \linebreak
+          \\column [Format.Alignment = Center] \linebreak
+          \\column [Format.Alignment = Right] \linebreak
+        \} \linebreak
+        \\rows [Height = 35] \linebreak
+        \{ \linebreak
+          \\row [VerticalAlignment = Top] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [VerticalAlignment = Center] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [VerticalAlignment = Bottom] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table
+    [ 
+      Borders.Width = 2
+      Format.Shading.Color = LavenderBlush
+      Shading.Color = Salmon
+      TopPadding = 2 BottomPadding = 2
+    ]
+    {
+      \columns
+      {
+        \column [Format.Alignment = Left]
+        \column [Format.Alignment = Center]
+        \column [Format.Alignment = Right]
+      }
+      \rows [Height = 35]
+      {
+        \row [VerticalAlignment = Top]
+        {
+          \cell {Text}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [VerticalAlignment = Center]
+        {
+          \cell {Text}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [VerticalAlignment = Bottom]
+        {
+          \cell {Text}
+          \cell {Text}
+          \cell {Text}
+        }
+      }
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Cell Layout - Cell Padding
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Cell Padding
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The contents of a cell can be seperated from its borders by the cell padding.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Padding
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Padding cannot be set at a cell directly.
+      Instead, left and right padding can be adjusted at each column, top and bottom padding at each row.
+      This avoids "fluttering" text alignment within the table.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table \linebreak
+      [ \linebreak
+        Borders.Width = 0.75 \linebreak
+        Format \{Font.Size = 8  Shading.Color = LavenderBlush\} \linebreak
+        Shading.Color = Salmon \linebreak
+        TopPadding = 2 BottomPadding = 2 \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\columns [Width = "5cm"] \linebreak
+        \{ \linebreak
+          \\column [Format.Alignment = Left LeftPadding = 0] \linebreak
+          \\column [Format.Alignment = Left LeftPadding = 7 RightPadding = 18] \linebreak
+          \\column [Format.Alignment = Right RightPadding = 0] \linebreak
+        \} \linebreak
+        \\rows [Height = "1cm"] \linebreak
+        \{ \linebreak
+          \\row [VerticalAlignment = Top TopPadding = 0] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [VerticalAlignment = Top TopPadding = 3 BottomPadding = 12] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \linebreak
+            \{ Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat \linebreak
+              augait eratie modions quisciduisi euissed magna feugiam quat alit amet \linebreak
+              alit, quamcon henibh eum veros nullan eugiat. \linebreak
+            \} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [VerticalAlignment = Bottom BottomPadding = 0] \linebreak
+          \{ \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table
+    [
+      Borders.Width = 0.75
+      Format {Font.Size = 8  Shading.Color = LavenderBlush}
+      Shading.Color = Salmon
+      TopPadding = 2 BottomPadding = 2
+    ]
+    {
+      \columns [Width = "5cm"]
+      {
+        \column [Format.Alignment = Left LeftPadding = 0]
+        \column [Format.Alignment = Left LeftPadding = 7 RightPadding = 18]
+        \column [Format.Alignment = Right RightPadding = 0]
+      }
+      \rows [Height = "1cm"]
+      {
+        \row [VerticalAlignment = Top TopPadding = 0]
+        {
+          \cell {Text}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [VerticalAlignment = Top TopPadding = 3 BottomPadding = 12]
+        {
+          \cell {Text}
+          \cell
+          { Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat
+            augait eratie modions quisciduisi euissed magna feugiam quat alit amet
+            alit, quamcon henibh eum veros nullan eugiat.
+          }
+          \cell {Text}
+        }
+        \row [VerticalAlignment = Bottom BottomPadding = 0]
+        {
+          \cell {Text}
+          \cell {Text}
+          \cell {Text}
+        }
+      }
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Cell Layout - HeightRule
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      HeightRule
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The height can be controlled only for the whole row.
+      
+      The implicit height of a cell is determined by the contents height plus the
+      value of \bold{TopPadding} and \bold{BottomPadding}. The implicit height of
+      a row is the maximum of all its cells.
+    }
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      AtLeast
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The height is determined by the maximum of the attribute \bold{RowHeight} and
+      the implicit row height.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table \linebreak
+      [ \linebreak
+        Borders.Width = 0.75 \linebreak
+        Format \{Font.Size = 8  Shading.Color = LavenderBlush\} \linebreak
+        Shading.Color = Salmon \linebreak
+        TopPadding = 2 BottomPadding = 2 \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\columns [Width = "5cm"] \linebreak
+        \{ \linebreak
+          \\column\linebreak
+          \\column\linebreak
+          \\column\linebreak
+        \} \linebreak
+        \\rows\linebreak
+        \{ \linebreak
+          \\row [HeightRule = AtLeast Height = 5]\linebreak
+          \{ \linebreak
+            \\cell \{Height = 5\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = AtLeast Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \linebreak
+            \{ Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat \linebreak
+              augait eratie modions quisciduisi euissed magna feugiam quat alit amet \linebreak
+              alit, quamcon henibh eum veros nullan eugiat. \linebreak
+            \} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = AtLeast Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table
+    [
+      Borders.Width = 0.75
+      Format {Font.Size = 8  Shading.Color = LavenderBlush}
+      Shading.Color = Salmon
+      TopPadding = 2 BottomPadding = 2
+    ]
+    {
+      \columns [Width = "5cm"]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows
+      {
+        \row [HeightRule = AtLeast Height = 5]
+        {
+          \cell {Height = 5}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [HeightRule = AtLeast Height = 40]
+        {
+          \cell {Height = 40}
+          \cell
+          { Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat
+            augait eratie modions quisciduisi euissed magna feugiam quat alit amet
+            alit, quamcon henibh eum veros nullan eugiat.
+          }
+          \cell {Text}
+        }
+        \row [HeightRule = AtLeast Height = 40]
+        {
+          \cell {Height = 40}
+          \cell {Text}
+          \cell {Text}
+        }
+      }
+    }
+    
+    // -------------------------------------------------------------------------
+    \pagebreak
+    \paragraph [Style = "Heading2"]
+    {
+      Exactly
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The height is taken from the attribute 'RowHeight', regardless of the implicit height.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table \linebreak
+      [ \linebreak
+        Borders.Width = 0.75 \linebreak
+        Format \{Font.Size = 8  Shading.Color = LavenderBlush\} \linebreak
+        Shading.Color = Salmon \linebreak
+        TopPadding = 2 BottomPadding = 2 \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\columns [Width = "5cm"] \linebreak
+        \{ \linebreak
+          \\column\linebreak
+          \\column\linebreak
+          \\column\linebreak
+        \} \linebreak
+        \\rows\linebreak
+        \{ \linebreak
+          \\row [HeightRule = Exactly Height = 5]\linebreak
+          \{ \linebreak
+            \\cell \{Height = 5\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = Exactly Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \linebreak
+            \{ Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat \linebreak
+              augait eratie modions quisciduisi euissed magna feugiam quat alit amet \linebreak
+              alit, quamcon henibh eum veros nullan eugiat. \linebreak
+            \} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = Exactly Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table
+    [
+      Borders.Width = 0.75
+      Format {Font.Size = 8  Shading.Color = LavenderBlush}
+      Shading.Color = Salmon
+      TopPadding = 2 BottomPadding = 2
+    ]
+    {
+      \columns [Width = "5cm"]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows
+      {
+        \row [HeightRule = Exactly Height = 5]
+        {
+          \cell {Height = 5}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [HeightRule = Exactly Height = 40]
+        {
+          \cell {Height = 40}
+          \cell
+          { Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat
+            augait eratie modions quisciduisi euissed magna feugiam quat alit amet
+            alit, quamcon henibh eum veros nullan eugiat.
+          }
+          \cell {Text}
+        }
+        \row [HeightRule = Exactly Height = 40]
+        {
+          \cell {Height = 40}
+          \cell {Text}
+          \cell {Text}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The contents is clipped by the cell.
+    }
+    
+    // -------------------------------------------------------------------------
+    \pagebreak
+    \paragraph [Style = "Heading2"]
+    {
+      Auto
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The height is the implicit row height.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table \linebreak
+      [ \linebreak
+        Borders.Width = 0.75 \linebreak
+        Format \{Font.Size = 8  Shading.Color = LavenderBlush\} \linebreak
+        Shading.Color = Salmon \linebreak
+        TopPadding = 2 BottomPadding = 2 \linebreak
+      ] \linebreak
+      \{ \linebreak
+        \\columns [Width = "5cm"] \linebreak
+        \{ \linebreak
+          \\column\linebreak
+          \\column\linebreak
+          \\column\linebreak
+        \} \linebreak
+        \\rows\linebreak
+        \{ \linebreak
+          \\row [HeightRule = Auto Height = 5]\linebreak
+          \{ \linebreak
+            \\cell \{Height = 5\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = Auto Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \linebreak
+            \{ Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat \linebreak
+              augait eratie modions quisciduisi euissed magna feugiam quat alit amet \linebreak
+              alit, quamcon henibh eum veros nullan eugiat. \linebreak
+            \} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+          \\row [HeightRule = Auto Height = 40] \linebreak
+          \{ \linebreak
+            \\cell \{Height = 40\} \linebreak
+            \\cell \{Text\} \linebreak
+            \\cell \{Text\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table
+    [
+      Borders.Width = 0.75
+      Format {Font.Size = 8  Shading.Color = LavenderBlush}
+      Shading.Color = Salmon
+      TopPadding = 2 BottomPadding = 2
+    ]
+    {
+      \columns [Width = "5cm"]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows
+      {
+        \row [HeightRule = Auto Height = 5]
+        {
+          \cell {Height = 5}
+          \cell {Text}
+          \cell {Text}
+        }
+        \row [HeightRule = Auto Height = 40]
+        {
+          \cell {Height = 40}
+          \cell
+          { Loreet ad et luptat. Duis niamconsecte digna facilla reros delit utat
+            augait eratie modions quisciduisi euissed magna feugiam quat alit amet
+            alit, quamcon henibh eum veros nullan eugiat.
+          }
+          \cell {Text}
+        }
+        \row [HeightRule = Auto Height = 40]
+        {
+          \cell {Height = 40}
+          \cell {Text}
+          \cell {Text}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The height of each row is determined by the height of the largest cell.
+    }
+  }
+}

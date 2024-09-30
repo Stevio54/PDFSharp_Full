@@ -1,0 +1,178 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Attributes - Color
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Color
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Colors can be defined in several ways.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      By Name
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are 141 predefined colors, listed in the MigraDoc Help. These colors are the
+      same as the colors predefined in the .NET framework.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = Red …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = Red Width = "2cm" Height = "1cm"]
+    {}
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      By Value
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Colors can be defined as decimal or hex value. A hex value has the following form:\linebreak
+      0x\fontcolor(gray){tt}\fontcolor(red){rr}\fontcolor(green){gg}\fontcolor(blue){bb},\linebreak
+      with \fontcolor(gray){tt} meaning the bytes for transparency, \fontcolor(red){rr} for red, \fontcolor(green){gg} for green and \fontcolor(blue){bb} for blue.\linebreak
+      MigraDoc doesn't support transparency in this version completely. When the transparency value
+      is not zero, then a color that represents the partially transparent color on a white
+      background will be used in the PDF output. If the transparency value is zero, then nothing
+      will be displayed. The transparency is fully supported in the preview and when the document
+      is printed directly from MigraDoc.\linebreak
+      You can also translate this number into the decimal system and use the result.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = 4000000000 …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = 4000000000 Width = "2cm" Height = "1cm"]
+    {}
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = 0xFFFF8000 …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = 0xFFFF8000 Width = "2cm" Height = "1cm"]
+    {}
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      By RGB
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In this case, the alpha value is assumed to be 255, which means no transparency is given.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = RGB(42,0x80,67) …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = RGB(42,0x80,67) Width = "2cm" Height = "1cm"]
+    {}
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      By CMYK
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The following formulas are used to translate CMYK (\bold{C}yan, \bold{M}agenta, \bold{Y}ellow, Blac\bold{K}) into equivalent RGB values:\linebreak
+      red   = Floor((1 - Min(1, cyan    * (1 - black) + black)) * 255 + 0.5)\linebreak
+      green = Floor((1 - Min(1, magenta * (1 - black) + black)) * 255 + 0.5)\linebreak
+      blue  = Floor((1 - Min(1, yellow  * (1 - black) + black)) * 255 + 0.5).
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = CMYK(34,35,11,06) …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = CMYK(34,35,11,06) Width = "2cm" Height = "1cm"]
+    {}
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      By Gray Shade
+    }
+    \paragraph [Style = "Comment"]
+    {
+      A Color can be set as a gray shade value from 0 (white) to 100 (black).
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = GRAY(15) …] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = GRAY(15) Width = "2cm" Height = "1cm"]
+    {}
+  }
+}

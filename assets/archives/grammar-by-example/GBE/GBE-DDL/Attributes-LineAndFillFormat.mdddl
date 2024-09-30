@@ -1,0 +1,235 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Attributes - Line- and FillFormat
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      LineFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The LineFormat attribute is used in a Shape object and all objects that are derived
+      from the Shape object, which includes: Image, TextFrame and Chart.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Style
+    }
+    \paragraph [Style = "Comment"]
+    {
+      MigraDoc currently supports one Style for LineFormat, which is \italic{Single}.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe \linebreak
+      [ \linebreak
+        LineFormat.Style = Single \linebreak
+      ] \linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.Style = Single
+      LineFormat.Width = 2
+    ]
+    {
+      Single
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      DashStyle
+    }
+    \paragraph [Style = "Comment"]
+    {
+      There are five DashStyle in MigraDoc. Solid, Dash, DashDot, DashDotDot and SquareDot.
+      the Solid dash style is the default dash style which will be used if no dash style is
+      given.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [LineFormat.DashStyle = Solid]\linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.Style = Single
+      LineFormat.DashStyle = Solid
+      LineFormat.Width = 2
+    ]
+    {
+      Solid
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [LineFormat.DashStyle = Dash]\linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.DashStyle = Dash
+      LineFormat.Width = 2  //BUG Set default value
+    ]
+    {
+      Dash
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [LineFormat.DashStyle = DashDot]\linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.DashStyle = DashDot
+      LineFormat.Width = 2
+    ]
+    {
+      DashDot
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [LineFormat.DashStyle = DashDotDot]\linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.Style = Single
+      LineFormat.DashStyle = DashDotDot
+      LineFormat.Width = 2
+    ]
+    {
+      DashDotDot
+    }
+
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [LineFormat.DashStyle = SquareDot]\linebreak
+      \{…\}
+    }
+    \textframe
+    [
+      Height="1cm" Width="3cm"
+      LineFormat.Style = Single
+      LineFormat.DashStyle = SquareDot
+      LineFormat.Width = 2
+    ]
+    {
+      SquareDot
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Color, Visible, Width
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The explanation for Color, Visible and Width can be seen in the 'Attributes-Border' sample.
+    }
+
+    \pagebreak
+    
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      FillFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The FillFormat attribute is used in a Shape object and all objects that are derived
+      from the Shape object, which includes: Image, TextFrame and Chart, to define how
+      the area should be filled.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Color
+    }
+    \paragraph [Style = "Comment"]
+    {
+      As its name implies, this attribute defines the shading's color and can use any syntax which
+      is explained in the 'Attributes-Color' sample.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\textframe [FillFormat.Color = LightGreen] \linebreak
+      \{…\}
+    }
+    \textframe [FillFormat.Color = LightGreen]
+    {
+      LightGreen
+    }
+  }
+}

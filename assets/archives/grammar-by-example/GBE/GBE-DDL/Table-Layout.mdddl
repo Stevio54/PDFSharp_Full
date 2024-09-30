@@ -1,0 +1,802 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Layout - Horizontal Alignment
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+   
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Horizontal Alignment
+    }
+    \paragraph [Style = "Comment"]
+    {
+     A table can be aligned horizontally.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Left Aligned
+    }
+    \paragraph [Style = "Comment"]
+    {
+      By default, the text of the first column is left aligned to the page margin.
+      This looks best if the table has no borders.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\rows [Alignment = Left]
+    }
+    \table [Borders.Width = 1.25 Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows [Alignment = Left]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      This can be adjusted with a left indent.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\rows [Alignment = Left LeftIndent = "0cm"]
+    }
+    \table [Borders.Width = 1.25 Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows [Alignment = Left LeftIndent = "0cm"]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Left indent can be negative.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\rows [Alignment = Left LeftIndent = "-5mm"]
+    }
+    \table [Borders.Width = 1.25 Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows [Alignment = Left LeftIndent = "-5mm"]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Centered
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\rows [Alignment = center]
+    }
+    \table [Borders.Width = 1.25 Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows [Alignment = center]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Right Aligned
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\rows [Alignment = Right]
+    }
+    \table [Borders.Width = 1.25 Format.Font.Size = 8]
+    {
+      \columns
+      {
+        \column
+        \column
+      }
+      \rows [Alignment = Right]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+  }
+    
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Layout - HeadingFormat
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      HeadingFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Any row or column that has its HeadingFormat attribute set to true will be repeated
+      when the table is split.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+        \} \linebreak
+        \\rows [Height = 40] \linebreak
+        \{ \linebreak
+          \\row [HeadingFormat = true Format.Font.Color = Red] \linebreak
+          \{ \linebreak
+            \\cell \{Heading\} \linebreak
+            \\cell \{Heading\} \linebreak
+            \\cell \{Heading\} \linebreak
+            \\cell \{Heading\} \linebreak
+            \\cell \{Heading\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          … \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns
+      {
+        \column
+        \column
+        \column
+        \column
+        \column
+      }
+      \rows [Height = 40]
+      {
+        \row [HeadingFormat = true Format.Font.Color = Red]
+        {
+          \cell {Heading}
+          \cell {Heading}
+          \cell {Heading}
+          \cell {Heading}
+          \cell {Heading}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    
+    \paragraph [Style = "Comment"]
+    {
+      The heading is repeated.
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Layout - Cell Merge
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Cell Merge
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Two or more cells can be merged horizontally, vertically or horizontally and
+      vertically by setting the \bold{MergeRight} and \bold{MergeDown} attributes
+      to the number of cells that should be merged.
+      A value of zero means that the cell is not merged. The contents of the
+      merged cells is defined by the top left cell. The contents and the format of
+      the other cells are ignored.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Comment"]
+    {
+      \bold{MergeRight}
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns  [Width = 100]\linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+        \} \linebreak
+        \\rows [Height = 25] \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell [MergeRight = 1] \{MergeRight = 1\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns [Width = 100]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows [Height = 25]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell [MergeRight = 1] {MergeRight = 1}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The cell is merged to the right by 1.
+    }
+
+    // -------------------------------------------------------------------------
+    \pagebreak
+    \paragraph [Style = "Comment"]
+    {
+      \bold{MergeDown}
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns  [Width = 100]\linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+        \} \linebreak
+        \\rows [Height = 25] \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell [MergeDown = 1] \{MergeDown = 1\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns [Width = 100]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows [Height = 25]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell [MergeDown = 1] {MergeDown = 1}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The cell is merged down by 1.
+    }
+
+    // -------------------------------------------------------------------------
+    \pagebreak
+    \paragraph [Style = "Comment"]
+    {
+      \bold{MergeRight} and \bold{MergeDown}
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns [Width = 100]\linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+        \} \linebreak
+        \\rows [Height = 25] \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell [MergeRight = 1 MergeDown = 1] \{MergeRight = 1 MergeDown = 1\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns [Width = 100]
+      {
+        \column
+        \column
+        \column
+      }
+      \rows [Height = 25]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell [MergeRight = 1 MergeDown = 1] {MergeRight = 1 MergeDown = 1}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The cell is merged to the right by 1 and down by 1.
+    }
+  }
+  
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Table - Layout - KeepWith
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      KeepWith
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Defines the number of rows or columns that should be kept together with the
+      current row when the table is split.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "DDL"]
+    {
+      \\table [Borders.Visible = true] \linebreak
+      \{ \linebreak
+        \\columns \linebreak
+        \{ \linebreak
+          \\column \linebreak
+          \\column \linebreak
+          \\column \linebreak
+        \} \linebreak
+        \\rows [Height = 40] \linebreak
+        \{ \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row [KeepWith = 3] \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+          \\row \linebreak
+          \{ \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+            \\cell \{Text…\} \linebreak
+          \} \linebreak
+        \} \linebreak
+      \}
+    }
+    \table [Borders.Visible = true]
+    {
+      \columns
+      {
+        \column
+        \column
+        \column
+      }
+      \rows [Height = 40]
+      {
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row  [KeepWith = 3]
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+        \row
+        {
+          \cell {Text…}
+          \cell {Text…}
+          \cell {Text…}
+        }
+      }
+    }
+    
+    \paragraph [Style = "Comment"]
+    {
+      Though the third and fourth row would fit on page 1, they are on page 2 because
+      row three must be kept together with rows four to six, which do not fit on page 1,
+      completely.
+    }
+  }
+}

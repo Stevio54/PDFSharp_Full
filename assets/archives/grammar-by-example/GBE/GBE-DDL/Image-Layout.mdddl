@@ -1,0 +1,476 @@
+//
+// empira MigraDoc DDL sample
+//
+// This code is free for public use.
+// You are encouraged to use this code as a basis for your own documents.
+//
+
+\document
+{
+  \styles
+  {
+    Heading1
+    {
+      Font.Size = 13
+      Font.Bold = true
+      Font.Color = RGB(204,0,51)
+      ParagraphFormat.SpaceBefore = 0
+      ParagraphFormat.SpaceAfter = 12
+      ParagraphFormat.KeepWithNext = true
+    }
+    
+    Heading2
+    {
+      Font.Size = 11
+      ParagraphFormat.SpaceBefore = 12
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.KeepWithNext = true
+    }
+
+    Header {Font.Color = RGB(70,70,70)}
+    
+    Footer {Font.Color = RGB(70,70,70)}
+    
+    Comment : Normal
+    {
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 9
+      ParagraphFormat.SpaceAfter = 6
+    }
+   
+    DDL : Normal
+    {
+      Font.Name = "Lucida Console"
+      Font.Size = 9
+      Font.Color = RGB(30,70,160)
+      ParagraphFormat.SpaceBefore = 6
+      ParagraphFormat.SpaceAfter = 6
+      ParagraphFormat.Shading.Color = GRAY(5)
+      ParagraphFormat.KeepTogether = true
+    }
+  }
+
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Image - Layout
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Image Layout
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Images got a few properties in common with textframes and charts.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      LineFormat and FillFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See the 'Shape-Layout' sample to see how to surround an image by a line
+      or how to give it a background color.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Position
+    }
+    \paragraph [Style = "Comment"]
+    {
+      See the 'Shape-Layout' sample to see how an image receives its desired position.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Image - Layout - Size
+    }
+    \footer [Format.Alignment = Center]
+    {
+      Section \field(Section) \symbol(Bullet) Page \field(Page) of \field(SectionPages)
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Size
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The size of an image can be determined in several manners.
+    }
+
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Height and Width
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The size can be simply determined by defining both of the attributes \bold{Height}
+      and \bold{Width}, as described in the 'Shape-Layout' sample.
+      
+      Note that if both \bold{Height} and \bold{Width} are set,
+      all other attributes described in this section will be ignored.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Default Size
+    }
+    \paragraph [Style = "Comment"]
+    {
+      The default size of an image is its size in pixels divided by its resolution.
+      If an image file does not have resolution information, a default resolution of 72 dpi is taken to calculate its size.
+      In our example, we got a portable network graphic of 76x76 pixels with a resolution of 96 dpi.
+      This results in a rendered size of 2x2 cm.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png")
+    }
+    \image("SquareWithColorGradient.png")
+    \paragraph [Style = "Heading2" Format.PageBreakBefore = true]
+    {
+      LockAspectRatio
+    }
+    \paragraph [Style = "Comment"]
+    {
+      If either \bold{Height} or \bold{Width} is given,
+      the \bold{LockAspectRatio} attribute determines the undefined attribute in each case.
+      
+      If \bold{LockAspectRatio} is set to \italic{true},
+      the image will be scaled equally in 
+      both horizontal and vertical direction to fit the given
+      \bold{Height} or \bold{Width}, respectively. This is the default behavior.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png") \linebreak
+      [\linebreak
+        Width = "3cm"\linebreak
+        LockAspectRatio = true\linebreak
+      ]
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      Width = "3cm"
+      LockAspectRatio = true
+    ]
+    \paragraph [Style = "Comment"]
+    {
+      If \bold{LockAspectRatio} is set to \italic{false},
+      the image will keep its original width or height, depending on which attribute is not set.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png") \linebreak
+      [ \linebreak
+        Width = "3cm"\linebreak
+        LockAspectRatio = false\linebreak
+        …\linebreak
+      ] \linebreak
+      \\image("SquareWithColorGradient.png") \linebreak
+      [ \linebreak
+        Height = "3cm"\linebreak
+        LockAspectRatio = false\linebreak
+        …\linebreak
+      ]
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      Width = "3cm"
+      LockAspectRatio = false
+      WrapFormat.Style = Through
+    ]
+    \image("SquareWithColorGradient.png")
+    [
+      Height = "3cm"
+      LockAspectRatio = false
+      Left = "5cm"
+    ]
+    \paragraph [Style = "Heading2"]
+    {
+      ScaleHeight and ScaleWidth
+    }
+    \paragraph [Style = "Comment"]
+    {
+      You can set vertical and horizontal scaling factors for the image.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png") \linebreak
+      [ \linebreak
+        ScaleHeight = 0.5\linebreak
+        LockAspectRatio = false\linebreak
+        …\linebreak
+      ] \linebreak
+      \\image("SquareWithColorGradient.png") \linebreak
+      [ \linebreak
+        ScaleWidth = 2.0\linebreak
+        LockAspectRatio = false\linebreak
+        …\linebreak
+      ] 
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      ScaleHeight = 0.5
+      LockAspectRatio = false
+      WrapFormat.Style = Through
+    ]
+    \image("SquareWithColorGradient.png")
+    [
+      ScaleWidth = 2.0
+      LockAspectRatio = false
+      Left = Center
+    ]
+    \paragraph [Style = "Comment"]
+    {
+      Note that you need to set \bold{LockAspectRatio} to \italic{false} here to receive the scaling
+      in one dimension only. This is due to the default value of this attribute, which is
+      \italic{true}, as mentioned above.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Resolution
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Not all image files contain resolution information. Unfortunately,
+      different programs then assume different default resolutions (72 or 96 dpi are the most common values).
+      
+      To avoid trouble, you can specify a resolution that will be taken into account for size calculations.
+    }
+    \paragraph [Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png") \linebreak
+      [\linebreak
+        Resolution = 96 \//not necessary, because it's the picture's inherent resolution\linebreak
+        …\linebreak
+      ]\linebreak
+      \\image("SquareWithColorGradient.png") \linebreak
+      [\linebreak
+        Resolution = 72\linebreak
+        …\linebreak
+      ]
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      Resolution = 96
+      WrapFormat.Style = Through
+    ]
+    \image("SquareWithColorGradient.png")
+    [
+      Resolution = 72
+      WrapFormat.Style = TopBottom
+      Left = Center
+    ]
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Image - Layout - PictureFormat
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      PictureFormat
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In the \bold{PictureFormat} attribute you can find further attributes to crop your image.
+      
+      In future versions of MigraDoc, further settings like a transparency key will be found here.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Cropping
+    }
+    \paragraph [Style = "Comment"]
+    {
+      An image can be cropped on each edge.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\textframe[Height = "2cm" Width = "2cm"  …]\linebreak
+      \{ \linebreak
+        \\image("SquareWithColorGradient.png") \linebreak
+        [ \linebreak
+          PictureFormat.CropLeft = "0.5cm"\linebreak
+          PictureFormat.CropTop = "0.2cm"\linebreak
+          PictureFormat.CropRight = "0.7cm"\linebreak
+          PictureFormat.CropBottom = "0.9cm"\linebreak
+          …\linebreak
+        ]\linebreak
+     \}  
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      WrapFormat.Style = Through
+    ]
+    \textframe[Height = "2cm" Width = "2cm" LineFormat.Width = 1 Left = "2.5cm"]
+    {
+      \image("SquareWithColorGradient.png")
+      [
+        PictureFormat.CropLeft = "0.5cm"
+        PictureFormat.CropTop = "0.2cm"
+        PictureFormat.CropRight = "0.7cm"
+        PictureFormat.CropBottom = "0.9cm"
+        Left = "0.5cm"
+        Top = "0.2cm"
+      ]
+    }
+    \paragraph [Style = "Comment"]
+    { 
+      The uncropped image was put next to the cropped one to see the differences.
+
+      To visualize the cropping values, the cropped image is surrounded by a textframe of size 2x2 cm.
+      Also for illustration, the cropped image is shifted downwards 0.2 cm, to the right 0.5 cm, corresponding to the values of \bold{CropTop} and \bold{CropLeft}.
+      
+      Note that image cropping has no effect on HTML output.
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading2"]
+    {
+      Cropping and Image Size
+    }
+    \paragraph [Style = "Comment"]
+    {
+      It is important to mention that the values that are set for cropping
+      are relative to the original picture size.
+
+      So if you change \bold{Height} and \bold{Width} in the previous sample, 
+      the image part being cut away will stay the same.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\image("SquareWithColorGradient.png") \linebreak
+      [ \linebreak
+        PictureFormat.CropLeft = "0.5cm"\linebreak
+        PictureFormat.CropTop = "0.2cm"\linebreak
+        PictureFormat.CropRight = "0.7cm"\linebreak
+        PictureFormat.CropBottom = "0.9cm"\linebreak
+        Height = "3cm"\linebreak
+        Width = "4cm"\linebreak
+        …\linebreak
+      ]
+    }
+    \image("SquareWithColorGradient.png")
+    [
+      PictureFormat.CropLeft = "0.5cm"
+      PictureFormat.CropTop = "0.2cm"
+      PictureFormat.CropRight = "0.7cm"
+      PictureFormat.CropBottom = "0.9cm"
+      WrapFormat.Style = Through
+    ]
+    \image("SquareWithColorGradient.png")
+    [
+      PictureFormat.CropLeft = "0.5cm"
+      PictureFormat.CropTop = "0.2cm"
+      PictureFormat.CropRight = "0.7cm"
+      PictureFormat.CropBottom = "0.9cm"
+      Height = "3cm"
+      Width = "4cm"
+      Left = "2cm"
+    ]
+    \paragraph [Style = "Comment"]
+    {
+      Here, the unscaled but cropped image from the previous sample was put next to the scaled one.
+      Note that scaling is done so that the uncropped image would fit the given size.
+    }
+  }
+  \section [PageSetup.StartingNumber = 1]
+  {
+    \header
+    {
+      Image - Layout - Inline Images
+    }
+    // -------------------------------------------------------------------------
+    \paragraph [Style = "Heading1"]
+    {
+      Inline Images
+    }
+    \paragraph [Style = "Comment"]
+    {
+      In contrast to other shapes (textframes, charts), images can appear within paragraphs.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Overview
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Inline images are handled like a word within a paragraph. This implies the following consequences:
+    }
+    \paragraph [Style = "Comment" Format.ListInfo.ListType = BulletList1 Format.Tabstops += "0.5cm"]
+    {
+      The bottom of an inline image is aligned to the text base line.
+      
+      The image height is taken into account when rendering the line containing it.
+      
+      All image attributes that deal with its position are ignored.
+      
+      The image position can be influenced by tab stops.
+    }
+     \paragraph [Style = "Comment"]
+    {
+      The following samples are typical applications for inline images.
+    }
+    \paragraph [Style = "Heading2"]
+    {
+      Images as Bullets
+    }
+    \paragraph [Style = "Comment"]
+    {
+      Inline images are especially useful to create custom bullets.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\paragraph[Format.TabStops += \{Position = "1cm"\} …]\linebreak
+      \{\linebreak
+        \\image("tick_green.png")[Height = "0.3cm"] \\tab Point one is done\linebreak
+      \}
+    }
+    \paragraph[Format.TabStops += {Position = "1cm"}]
+    {
+      \image("tick_green.png")[Height = "0.3cm"] \tab Point one is done
+    }
+    // -------------------------------------------------------------------------
+    
+    \paragraph [Style = "Heading2"]
+    {
+      Aligning with Tab Stops
+    }
+    
+    \paragraph [Style = "Comment"]
+    {
+      An inline image can be aligned to a tab stop.
+      This can be useful for logos in headers that shall appear right aligned.
+    }
+    \paragraph[Style = "DDL"]
+    {
+      \\paragraph[Format.TabStops += \{Alignment = Right Position = "16cm"\} …]\linebreak
+      \{\linebreak
+        A Logo at a right aligned tab stop \\tab \linebreak
+        \\image("logo_e.gif")[Height = "1cm"]\linebreak
+     \}
+    }
+    \paragraph[Format.TabStops += {Alignment = Right Position = "16cm"}]
+    {
+      A Logo at a right aligned tab stop \tab \image("logo_e.gif")[Height = "1cm"]
+    }
+  }
+}
+
